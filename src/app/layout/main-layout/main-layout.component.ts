@@ -31,7 +31,7 @@ export class MainLayoutComponent implements OnInit, OnDestroy {
       ]
     },
     { 
-      label: 'Mutasi', 
+      label: 'Laporan', 
       icon: 'fa-solid fa-chart-column', 
       children: [
         { label: 'Laporan Mutasi', route: '/reports/mutation', icon: 'fa-solid fa-file-contract' },
