@@ -1,0 +1,130 @@
+<div class="form-card">
+  <div class="form-header header-flex">
+    <div>
+      <h2>History Data Good Receipt (GR)</h2>
+      <p>Daftar riwayat penerimaan material terkini</p>
+    </div>
+    <div style="display: flex; gap: 12px; align-items: center;">
+      <div class="search-box" style="position: relative; width: 300px;">
+        <i class="fa-solid fa-magnifying-glass" style="position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 1rem;"></i>
+        <input type="text" placeholder="Search..." [(ngModel)]="globalSearch" style="padding: 10px 14px 10px 40px; border: 1px solid var(--border-color); border-radius: 6px; background-color: #f8fafc; font-size: 0.9rem; color: var(--text-main); font-family: inherit; transition: all 0.2s;">
+      </div>
+      <button class="btn-primary" (click)="navigateToAddForm()">
+        <i class="fa-solid fa-plus"></i> Add Data GR
+      </button>
+    </div>
+  </div>
+
+  <div class="history-view">
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th width="40">No.</th>
+            <th>Tanggal Receipt</th>
+            <th>Batch Number</th>
+            <th>Pengirim</th>
+            <th>Part Number</th>
+            <th>Material Description</th>
+            <th width="80" class="text-center">Jumlah</th>
+            <th>Nomor Daftar</th>
+            <th>Tanggal Daftar</th>
+            <th width="80" class="text-center">Used</th>
+            <th width="80" class="text-center">Satuan</th>
+            <th width="70" class="text-center">Aksi</th>
+          </tr>
+          <tr>
+            <th class="col-search"></th>
+            <th class="col-search"><input type="text" placeholder="Search..." [(ngModel)]="colSearch.date"></th>
+            <th class="col-search"><input type="text" placeholder="Search..." [(ngModel)]="colSearch.batch"></th>
+            <th class="col-search"><input type="text" placeholder="Search..." [(ngModel)]="colSearch.pengirim"></th>
+            <th class="col-search"><input type="text" placeholder="Search..." [(ngModel)]="colSearch.partNum"></th>
+            <th class="col-search"><input type="text" placeholder="Search..." [(ngModel)]="colSearch.desc"></th>
+            <th class="col-search"><input type="text" placeholder="Search..." [(ngModel)]="colSearch.qty"></th>
+            <th class="col-search"><input type="text" placeholder="Search..." [(ngModel)]="colSearch.nomorDaftar"></th>
+            <th class="col-search"><input type="text" placeholder="Search..." [(ngModel)]="colSearch.tanggalDaftar"></th>
+            <th class="col-search"><input type="text" placeholder="Search..." [(ngModel)]="colSearch.used"></th>
+            <th class="col-search"><input type="text" placeholder="Search..." [(ngModel)]="colSearch.unit"></th>
+            <th class="col-search"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let h of filteredItems; let i = index">
+            <td class="text-center">{{i + 1}}</td>
+            <td>{{h.date}}</td>
+            <td class="font-bold text-main">{{h.batch}}</td>
+            <td>{{h.pengirim}}</td>
+            <td class="font-bold text-main">{{h.partNum}}</td>
+            <td>{{h.desc}}</td>
+            <td class="text-center">{{h.qty}}</td>
+            <td>{{h.nomorDaftar}}</td>
+            <td>{{h.tanggalDaftar}}</td>
+            <td class="text-center">{{h.used}}</td>
+            <td class="text-center">{{h.unit}}</td>
+            <td class="text-center">
+               <button class="btn-print-sm" (click)="printGR(h)"><i class="fa-solid fa-print"></i></button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+<!-- PRINT TEMPLATE -->
+<div class="print-template" *ngIf="selectedPrintItem">
+  
+  <div class="print-header-wrapper">
+    <div class="print-logo">
+      <img src="assets/looo.png" alt="GMF AeroAsia" style="width: 270px; height: 60px; object-fit: cover; object-position: center left; margin-left: -10px;">
+    </div>
+  </div>
+
+  <div class="print-content">
+    <div class="print-title">
+      <h1>Material Receiving Tag</h1>
+      <h2>Gudang Berikat</h2>
+    </div>
+    
+    <div class="print-info-box">
+      <div class="info-row">
+        <span class="info-label">Date</span>
+        <span class="info-colon">:</span>
+        <span class="info-value">{{selectedPrintItem.date}}</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">Owner</span>
+        <span class="info-colon">:</span>
+        <span class="info-value">Own Stock</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">Vendor</span>
+        <span class="info-colon">:</span>
+        <span class="info-value">{{selectedPrintItem.vendor || 'Lorem ipsum'}}</span>
+      </div>
+    </div>
+  
+  <table class="print-table">
+    <thead>
+      <tr>
+        <th>Batch Number</th>
+        <th>Part Number</th>
+        <th>Serial Number</th>
+        <th>Mat QTY</th>
+        <th>Material Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{selectedPrintItem.batchNum || '-'}}</td>
+        <td>{{selectedPrintItem.partNum}}</td>
+        <td>{{selectedPrintItem.serialNum || '-'}}</td>
+        <td>{{selectedPrintItem.qty}} {{selectedPrintItem.unit}}</td>
+        <td>{{selectedPrintItem.desc}}</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+

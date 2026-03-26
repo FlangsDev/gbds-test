@@ -1,0 +1,176 @@
+.report-card { background: #fff; border-radius: 12px; border: 1px solid var(--border-color); box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); overflow: hidden; }
+
+.card-header { 
+  padding: 24px; 
+  border-bottom: 1px solid #e2e8f0; 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  flex-wrap: wrap; 
+  gap: 16px;
+}
+.card-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1e293b; 
+  margin: 0;
+  white-space: nowrap; 
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+/* Date Range */
+.date-range-wrapper {
+  display: flex;
+  align-items: center;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 4px 12px;
+  gap: 8px;
+  transition: all 0.2s;
+}
+.date-range-wrapper:focus-within {
+  border-color: #38bdf8;
+  box-shadow: 0 0 0 3px #e0f2fe;
+}
+.date-input {
+  border: none;
+  background: transparent;
+  color: #475569;
+  font-size: 0.85rem;
+  font-family: inherit;
+  outline: none;
+  padding: 6px 0px;
+  cursor: pointer;
+}
+.separator {
+  color: #94a3b8;
+  font-weight: 500;
+  font-size: 0.85rem;
+}
+
+/* Search Box */
+.search-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+.search-box .search-icon {
+  position: absolute;
+  left: 12px;
+  color: #94a3b8;
+  font-size: 0.9rem;
+}
+.search-input {
+  width: 200px;
+  padding: 10px 12px 10px 36px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  background-color: #f8fafc;
+  font-size: 0.85rem;
+  color: #334155;
+  transition: all 0.2s;
+}
+.search-input:focus {
+  outline: none;
+  border-color: #38bdf8;
+  background-color: #fff;
+  box-shadow: 0 0 0 3px #e0f2fe;
+}
+
+/* Premium Button */
+.btn-export {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  color: #334155;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+.btn-export:hover {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+  color: #0f172a;
+}
+.btn-export i.fa-cloud-arrow-down {
+  color: #0284c7;
+  font-size: 1.1rem;
+}
+.btn-export .sm-icon {
+  font-size: 0.75rem;
+  color: #64748b;
+  margin-left: 2px;
+  transition: transform 0.2s;
+}
+.dropdown-container { position: relative; }
+.dropdown-menu {
+  position: absolute; 
+  top: 100%; 
+  right: 0; 
+  margin-top: 8px; 
+  background: #fff; 
+  border-radius: 8px; 
+  box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1); 
+  padding: 6px; 
+  width: 140px; 
+  border: 1px solid #e2e8f0; 
+  z-index: 100; 
+  animation: slideDown 0.15s ease-out;
+}
+.dropdown-menu ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 4px; }
+.dropdown-menu li { padding: 8px 12px; display: flex; align-items: center; gap: 10px; cursor: pointer; font-size: 0.85rem; font-weight: 500; border-radius: 6px; transition: all 0.2s; color: #475569; }
+.dropdown-menu li.opt-pdf:hover { background-color: #fef2f2; color: #dc2626; }
+.dropdown-menu li.opt-pdf i { color: #dc2626; font-size: 1rem; }
+.dropdown-menu li.opt-excel:hover { background-color: #f0fdf4; color: #16a34a; }
+.dropdown-menu li.opt-excel i { color: #16a34a; font-size: 1rem; }
+
+.rotated { transform: rotate(180deg); }
+@keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+
+.table-container { overflow-x: auto; padding-bottom: 20px;}
+table { width: 100%; border-collapse: collapse; font-size: 0.70rem; white-space: nowrap; table-layout: auto; }
+th {
+  background-color: #f8fafc;
+  padding: 12px 10px;
+  text-align: center;
+  font-weight: 600;
+  color: #334155;
+  border: 1px solid #e2e8f0;
+  vertical-align: middle;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+th.sub-th {
+  background-color: #f1f5f9;
+  color: #475569;
+}
+td {
+  padding: 12px 10px;
+  border: 1px solid #e2e8f0;
+  color: var(--text-main);
+}
+.text-success { color: #16a34a; font-weight: 600; }
+.text-danger { color: #dc2626; font-weight: 600; }
+.text-center { text-align: center; }
+.fw-bold { font-weight: 700; color: var(--primary-color); }
+
+@media (max-width: 900px) {
+  .header-actions { width: 100%; justify-content: flex-start; }
+  .search-input { width: 100%; min-width: 200px; }
+}

@@ -1,0 +1,139 @@
+.login-container-wrapper {
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  color: #0f172a;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background: url('/assets/images/gudang.png') no-repeat center center fixed;
+  background-size: cover;
+  overflow: hidden;
+}
+
+.login-container-wrapper::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(15, 23, 42, 0.6);
+  z-index: 1;
+}
+
+.login-container {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 400px;
+  background: rgba(248, 250, 252, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  margin: 0 16px;
+}
+
+.logo-container {
+  text-align: center;
+  margin-bottom: 28px;
+}
+.logo-container i {
+  font-size: 2.8rem;
+  background: linear-gradient(135deg, #0ea5e9, #0284c7);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 12px;
+  filter: drop-shadow(0 4px 6px rgba(14, 165, 233, 0.2));
+}
+.logo-container h1 {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.5px;
+  margin: 0;
+}
+
+
+
+.input-group {
+  margin-bottom: 18px;
+}
+.input-group label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #334155;
+  margin-bottom: 8px;
+}
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.input-wrapper i.icon-left {
+  position: absolute;
+  left: 14px;
+  color: #94a3b8;
+  transition: color 0.3s ease;
+}
+.input-wrapper input {
+  width: 100%;
+  padding: 12px 14px 12px 40px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  color: #0f172a;
+  transition: all 0.3s ease;
+  font-family: inherit;
+  background: #f8fafc;
+}
+.input-wrapper input:focus {
+  outline: none;
+  background: #ffffff;
+  border-color: #0ea5e9;
+  box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.1);
+}
+.input-wrapper input:focus + i.icon-left,
+.input-wrapper input:focus ~ i.icon-left {
+  color: #0ea5e9;
+}
+.input-wrapper input::placeholder {
+  color: #94a3b8;
+}
+.input-wrapper i.icon-right {
+  position: absolute;
+  right: 14px;
+  color: #94a3b8;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.input-wrapper i.icon-right:hover {
+  color: #475569;
+}
+
+.btn-login {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, #0ea5e9, #0284c7);
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+  font-family: inherit;
+  box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3);
+}
+.btn-login:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(14, 165, 233, 0.4);
+}
+.btn-login:active {
+  transform: translateY(0);
+}
+
+

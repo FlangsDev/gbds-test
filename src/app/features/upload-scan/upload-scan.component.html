@@ -1,0 +1,70 @@
+<div class="form-card">
+  <div class="form-header">
+    <h2>Upload Scan Dokumen</h2>
+    <p>Lengkapi field berikut untuk mengunggah scan dokumen</p>
+  </div>
+
+  <div class="upload-container">
+    <div class="form-grid">
+      <div class="form-group flex-1">
+        <label>Pilih BC</label>
+        <div class="dropdown-container">
+           <div class="custom-select-trigger w-100" (click)="toggleBCMenu()">
+             <div class="sel-val">
+               <i class="fa-solid fa-file-invoice icon-sel"></i>
+               <span>{{selectedBC ? 'BC ' + selectedBC : '-- Pilih Jenis BC --'}}</span>
+             </div>
+             <i class="fa-solid fa-angle-down" [class.rotated]="showBCMenu"></i>
+           </div>
+           <div class="dropdown-menu pt-menu" *ngIf="showBCMenu">
+             <ul>
+               <li *ngFor="let bc of bcs" (click)="setBC(bc)">BC {{bc}}</li>
+             </ul>
+           </div>
+        </div>
+      </div>
+
+      <div class="form-group flex-1">
+        <label>Pilih No AJU</label>
+        <div class="dropdown-container">
+           <div class="custom-select-trigger w-100" (click)="toggleAJUMenu()">
+             <div class="sel-val">
+               <i class="fa-solid fa-hashtag icon-sel"></i>
+               <span>{{selectedAJU || '-- Pilih No AJU --'}}</span>
+             </div>
+             <i class="fa-solid fa-angle-down" [class.rotated]="showAJUMenu"></i>
+           </div>
+           <div class="dropdown-menu pt-menu" *ngIf="showAJUMenu">
+             <ul>
+               <li *ngFor="let aju of ajus" (click)="setAJU(aju)">{{aju}}</li>
+             </ul>
+           </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group mt-24">
+      <label>Upload File</label>
+      <div class="dropzone" 
+           [class.active]="isDragging"
+           (dragover)="onDragOver($event)"
+           (dragleave)="onDragLeave()"
+           (drop)="onDrop($event)">
+        <div class="drop-icon">
+          <i class="fa-solid fa-cloud-arrow-up"></i>
+        </div>
+        <h3>Drag & drop file disini</h3>
+        <p>atau klik untuk memilih file</p>
+        <span class="file-hint">Format: PDF, Excel, JPG, PNG (Maks. 10MB)</span>
+      </div>
+    </div>
+
+    <div class="form-actions mt-32">
+      <button class="btn-delete">Hapus</button>
+      <button class="btn-upload" (click)="onUpload()">
+        <i class="fa-solid fa-upload"></i>
+        Upload Dokumen
+      </button>
+    </div>
+  </div>
+</div>

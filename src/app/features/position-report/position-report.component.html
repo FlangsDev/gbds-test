@@ -1,0 +1,45 @@
+<div class="report-card">
+  <div class="card-header">
+    <h2>Laporan Posisi Barang - Gudang Berikat</h2>
+  </div>
+
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>NO</th>
+          <th>KODE BARANG</th>
+          <th>NAMA BARANG</th>
+          <th>SATUAN</th>
+          <th>SALDO AWAL</th>
+          <th>MASUK</th>
+          <th>KELUAR</th>
+          <th>PENYESUAIAN</th>
+          <th>SALDO AKHIR</th>
+          <th>STOCK OPNAME</th>
+          <th>SELISIH</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of items">
+          <td>{{item.no}}</td>
+          <td>{{item.kodeBarang}}</td>
+          <td>{{item.namaBarang}}</td>
+          <td>{{item.satuan}}</td>
+          <td>{{item.saldoAwal}}</td>
+          <td class="text-success">{{item.masuk}}</td>
+          <td class="text-danger">{{item.keluar}}</td>
+          <td>{{item.penyesuaian}}</td>
+          <td>{{item.saldoAkhir}}</td>
+          <td>{{item.stockOpname}}</td>
+          <td>
+            <span class="status-circle" [class.bg-success]="item.selisih === 0" [class.bg-danger]="item.selisih !== 0">
+              <i class="fa-solid" [class.fa-check]="item.selisih === 0" [class.fa-xmark]="item.selisih !== 0"></i>
+              {{item.selisih}}
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,29 @@
+<div class="login-container-wrapper">
+  <div class="login-container">
+    <div class="logo-container">
+      <img src="assets/images/logo2.png" alt="GBDPS Logo" style="height: 52px; margin-bottom: 12px; filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.05));">
+      <h1>GBDPS Logistics</h1>
+    </div>
+
+    <form (ngSubmit)="onLogin()">
+      <div class="input-group">
+        <label>ID Pengguna / NIP</label>
+        <div class="input-wrapper">
+          <input type="text" placeholder="Masukkan ID Pengguna" [(ngModel)]="username" name="username" autocomplete="off" required>
+          <i class="fa-solid fa-user icon-left"></i>
+        </div>
+      </div>
+
+      <div class="input-group" style="margin-bottom: 28px;">
+        <label>Kata Sandi</label>
+        <div class="input-wrapper">
+          <input [type]="showPassword ? 'text' : 'password'" placeholder="Masukkan Kata Sandi" [(ngModel)]="password" name="password" required>
+          <i class="fa-solid fa-lock icon-left"></i>
+          <i class="fa-solid icon-right" [class.fa-eye]="!showPassword" [class.fa-eye-slash]="showPassword" (click)="togglePassword()"></i>
+        </div>
+      </div>
+
+      <button type="submit" class="btn-login">Masuk</button>
+    </form>
+  </div>
+</div>

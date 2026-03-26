@@ -1,0 +1,93 @@
+<div class="history-card">
+
+  <!-- Header -->
+  <div class="card-header">
+    <div class="header-left">
+      <h2><i class="fa-solid fa-clock-rotate-left"></i> Activity Log</h2>
+      <p>Rekam jejak seluruh aktivitas pengguna dalam sistem</p>
+    </div>
+    <div class="header-stats">
+      <div class="mini-stat">
+        <span class="mini-val total">{{ logs.length }}</span>
+        <span class="mini-lbl">Total Aktivitas</span>
+      </div>
+      <div class="mini-stat">
+        <span class="mini-val module">{{ countByModule() }}</span>
+        <span class="mini-lbl">Modul Aktif</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Filters -->
+  <div class="filters-bar">
+    <div class="search-box">
+      <i class="fa-solid fa-search"></i>
+      <input type="text" [(ngModel)]="searchQuery" placeholder="Cari aktivitas...">
+    </div>
+    <div class="filter-selects">
+
+      <!-- Filter Kategori -->
+      <div class="dropdown-container">
+        <div class="custom-select-trigger" (click)="toggleCategoryMenu()">
+          <span [class.placeholder]="!filterCategory">{{ filterCategory || 'Semua Kategori' }}</span>
+          <i class="fa-solid fa-angle-down" [class.rotated]="showCategoryMenu"></i>
+        </div>
+        <div class="dropdown-menu scrollable-menu" *ngIf="showCategoryMenu">
+          <ul>
+            <li (click)="setCategory('')" [class.active-opt]="filterCategory === ''">Semua Kategori</li>
+            <li *ngFor="let c of categories" (click)="setCategory(c)" [class.active-opt]="filterCategory === c">{{ c }}</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Filter Tanggal -->
+      <div class="date-filter-wrap">
+        <i class="fa-regular fa-calendar"></i>
+        <input type="date" [(ngModel)]="filterDate" class="date-input">
+        <button *ngIf="filterDate" class="btn-clear-date" (click)="filterDate = ''" title="Reset tanggal">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Timeline Log -->
+  <div class="log-timeline">
+    <div class="log-entry" *ngFor="let log of filteredLogs">
+      <!-- Action Icon Dot -->
+      <div class="log-dot dot-action">
+        <i class="fa-solid" [class]="getActionIcon(log.action)"></i>
+      </div>
+
+      <!-- Content -->
+      <div class="log-content">
+        <div class="log-top">
+          <div class="log-badges">
+            <span class="badge-module">
+              <i class="fa-solid" [class]="getActionIcon(log.action)"></i>
+              {{ log.module }}
+            </span>
+            <span class="badge-action">{{ log.action }}</span>
+          </div>
+          <div class="log-time">
+            <i class="fa-regular fa-clock"></i>
+            {{ log.timestamp | date:'dd MMM yyyy, HH:mm:ss' }}
+          </div>
+        </div>
+        <p class="log-detail">{{ log.detail }}</p>
+        <div class="log-meta">
+          <span><i class="fa-solid fa-user"></i> {{ log.user }}</span>
+          <span><i class="fa-solid fa-network-wired"></i> {{ log.ipAddress }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Empty state -->
+    <div class="empty-log" *ngIf="filteredLogs.length === 0">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <p>Tidak ada aktivitas yang sesuai filter</p>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,77 @@
+<div class="form-card">
+  <div class="form-header">
+    <h2>Create Good Receipt (GR)</h2>
+    <p>Pencatatan material receipt sesuai dengan batch dan part number</p>
+  </div>
+
+  <form class="gr-form" (ngSubmit)="onSubmit()">
+    
+    <div class="form-row">
+      <div class="form-group flex-1">
+        <label>Part Number <span class="required">*</span></label>
+        <div class="dropdown-container form-drop">
+           <div class="custom-select-trigger w-100" (click)="togglePartMenu()">
+             <span>{{formData.partNumber || '-- Pilih Part Number --'}}</span>
+             <i class="fa-solid fa-angle-down" [class.rotated]="showPartMenu"></i>
+           </div>
+           <div class="dropdown-menu pt-menu" *ngIf="showPartMenu">
+             <ul>
+               <li *ngFor="let part of partsList" (click)="setPart(part.partNum)">{{part.partNum}}</li>
+             </ul>
+           </div>
+        </div>
+      </div>
+
+      <div class="form-group flex-1">
+        <label>Batch Number <span class="info-text">(Terisi Otomatis)</span></label>
+        <div class="input-readonly-wrapper">
+          <input type="text" [value]="formData.batchNumber" disabled class="readonly-input" placeholder="Otomatis terisi..." />
+          <i class="fa-solid fa-lock input-icon-right"></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group flex-2">
+        <label>Serial Number</label>
+        <input list="serial-options" type="text" placeholder="Ketik atau pilih serial number..." [(ngModel)]="formData.serialNumber" name="serialNumber" autocomplete="off">
+        <datalist id="serial-options">
+          <option *ngFor="let sn of serialOptions" [value]="sn"></option>
+        </datalist>
+      </div>
+      
+      <div class="form-group flex-1">
+        <label>Jumlah <span class="required">*</span></label>
+        <input type="number" placeholder="0" [(ngModel)]="formData.quantity" name="quantity" min="0">
+      </div>
+
+      <div class="form-group flex-1">
+        <label>Satuan</label>
+        <div class="dropdown-container form-drop">
+           <div class="custom-select-trigger w-100" (click)="toggleUnitMenu()">
+             <span>{{formData.unit || '-- Pilih --'}}</span>
+             <i class="fa-solid fa-angle-down" [class.rotated]="showUnitMenu"></i>
+           </div>
+           <div class="dropdown-menu pt-menu" *ngIf="showUnitMenu">
+             <ul>
+               <li *ngFor="let u of units" (click)="setUnit(u)">{{u}}</li>
+             </ul>
+           </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group mt-3">
+      <label>Material Description <span class="required">*</span></label>
+      <input type="text" placeholder="Isi deskripsi material..." [(ngModel)]="formData.materialDescription" name="materialDescription">
+    </div>
+
+    <div class="form-actions mt-4">
+      <button type="button" class="btn-cancel" (click)="onCancel()">Batal</button>
+      <button type="submit" class="btn-submit">
+        <i class="fa-solid fa-check"></i>
+        Simpan GR
+      </button>
+    </div>
+  </form>
+</div>

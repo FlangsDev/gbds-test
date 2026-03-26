@@ -1,0 +1,78 @@
+<div class="report-card">
+  <div class="card-header">
+    <div class="header-actions">
+      <!-- Date Range (Optimized) -->
+      <div class="date-range-wrapper">
+        <input type="date" class="date-input" title="Start Date">
+        <span class="separator">to</span>
+        <input type="date" class="date-input" title="End Date">
+      </div>
+
+      <!-- Search Box -->
+      <div class="search-box">
+        <i class="fa-solid fa-search search-icon"></i>
+        <input type="text" class="search-input" placeholder="Cari barang...">
+      </div>
+
+      <!-- Export Data Dropdown -->
+      <div class="dropdown-container">
+        <button class="btn-export" (click)="toggleDownloadMenu()">
+          <i class="fa-solid fa-cloud-arrow-down"></i>
+          <span>Unduh</span>
+          <i class="fa-solid fa-chevron-down sm-icon" [class.rotated]="showDownloadMenu"></i>
+        </button>
+        <div class="dropdown-menu" *ngIf="showDownloadMenu">
+          <ul>
+            <li class="opt-pdf"><i class="fa-solid fa-file-pdf"></i> PDF</li>
+            <li class="opt-excel"><i class="fa-solid fa-file-excel"></i> Excel</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="table-container">
+    <table class="nested-header-table">
+      <thead>
+        <tr>
+          <th rowspan="2">No.</th>
+          <th rowspan="2">Kode Barang</th>
+          <th rowspan="2">Nama Barang</th>
+          <th rowspan="2">Satuan</th>
+          <th rowspan="2">Jumlah Barang</th>
+          <th rowspan="2">Saldo Awal</th>
+          <th colspan="2" class="text-center parent-th">Pemasukan</th>
+          <th colspan="1" class="text-center parent-th">Pengeluaran</th>
+          <th rowspan="2">Penyesuaian</th>
+          <th rowspan="2">Saldo Akhir</th>
+          <th rowspan="2">Hasil Pencacahan</th>
+          <th rowspan="2">Jumlah Selisih</th>
+          <th rowspan="2">Keterangan</th>
+        </tr>
+        <tr>
+          <th class="sub-th">BC 2.3</th>
+          <th class="sub-th">BC 2.7In</th>
+          <th class="sub-th">BC 3.0</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of items">
+          <td class="text-center">{{item.no}}</td>
+          <td>{{item.kodeBarang}}</td>
+          <td>{{item.namaBarang}}</td>
+          <td class="text-center">{{item.satuan}}</td>
+          <td class="text-center">{{item.jumlahBarang}}</td>
+          <td class="text-center">{{item.saldoAwal}}</td>
+          <td class="text-center text-success">{{item.pemasukanBC23}}</td>
+          <td class="text-center text-success">{{item.pemasukanBC27In}}</td>
+          <td class="text-center text-danger">{{item.pengeluaranBC30}}</td>
+          <td class="text-center">{{item.penyesuaian}}</td>
+          <td class="text-center fw-bold">{{item.saldoAkhir}}</td>
+          <td class="text-center">{{item.hasilPencacahan}}</td>
+          <td class="text-center">{{item.jumlahSelisih}}</td>
+          <td>{{item.keterangan}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

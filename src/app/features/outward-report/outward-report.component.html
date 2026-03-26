@@ -1,0 +1,129 @@
+<div class="report-header">
+  <div class="filters">
+    <div class="dropdown-container">
+      <div class="filter-item" (click)="toggleFilterMenu()">
+        <i class="fa-solid fa-filter"></i>
+        <span>{{activeFilter}}</span>
+        <i class="fa-solid fa-angle-down" [class.rotated]="showFilterMenu"></i>
+      </div>
+      <div class="dropdown-menu" *ngIf="showFilterMenu" style="margin-top:2px;">
+        <ul>
+          <li (click)="setFilter('Semua Jenis Dokumen')">Semua Jenis Dokumen</li>
+          <li (click)="setFilter('BC 3.0')">BC 3.0</li>
+          <li (click)="setFilter('BC 4.0')">BC 4.0</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="actions">
+    <div class="search-box">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input type="text" placeholder="Search..." [(ngModel)]="globalSearch">
+    </div>
+    <div class="dropdown-container">
+      <button class="btn-download" (click)="toggleDownloadMenu()">
+        <i class="fa-solid fa-download"></i>
+        Unduh Dokumen
+        <i class="fa-solid fa-angle-down" [class.rotated]="showDownloadMenu"></i>
+      </button>
+      <div class="dropdown-menu" *ngIf="showDownloadMenu" style="margin-top:2px;">
+        <ul>
+          <li class="opt-pdf"><i class="fa-solid fa-file-pdf"></i> PDF</li>
+          <li class="opt-excel"><i class="fa-solid fa-file-excel"></i> Excel</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="table-container">
+  <table>
+    <thead>
+      <tr>
+        <th>NO.</th>
+        <th>NOMOR PENGELUARAN</th>
+        <th>BATCH NUMBER</th>
+        <th>JENIS</th>
+        <th>NOMOR DAFTAR</th>
+        <th>TANGGAL DAFTAR</th>
+        <th>PENERIMA BARANG</th>
+        <th>NAMA PEMILIK</th>
+        <th>KODE BARANG</th>
+        <th>NAMA BARANG</th>
+        <th>SAT.</th>
+        <th>JML.</th>
+        <th>NILAI BARANG</th>
+        <th>SCAN DOKUMEN</th>
+      </tr>
+      <tr>
+        <th class="col-search"></th>
+        <th class="col-search"><input type="text" placeholder="Search..." [(ngModel)]="colSearch.nomorPengeluaran"></th>
+        <th class="col-search"><input type="text" placeholder="Search..." [(ngModel)]="colSearch.batchNumber"></th>
+        <th class="col-search"><input type="text" placeholder="Search..." [(ngModel)]="colSearch.jenis"></th>
+        <th class="col-search"><input type="text" placeholder="Search..." [(ngModel)]="colSearch.nomorDaftar"></th>
+        <th class="col-search"><input type="text" placeholder="Search..." [(ngModel)]="colSearch.tanggalDaftar"></th>
+        <th class="col-search"><input type="text" placeholder="Search..." [(ngModel)]="colSearch.penerima"></th>
+        <th class="col-search"><input type="text" placeholder="Search..." [(ngModel)]="colSearch.namaPemilik"></th>
+        <th class="col-search"><input type="text" placeholder="Search..." [(ngModel)]="colSearch.kodeBarang"></th>
+        <th class="col-search"><input type="text" placeholder="Search..." [(ngModel)]="colSearch.namaBarang"></th>
+        <th class="col-search"><input type="text" placeholder="Search..." [(ngModel)]="colSearch.satuan"></th>
+        <th class="col-search"><input type="text" placeholder="Search..." [(ngModel)]="colSearch.jumlah"></th>
+        <th class="col-search"><input type="text" placeholder="Search..." [(ngModel)]="colSearch.nilaiBarang"></th>
+        <th class="col-search"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of filteredItems">
+        <td>{{item.no}}</td>
+        <td><strong>{{item.nomorPengeluaran}}</strong></td>
+        <td>{{item.batchNumber}}</td>
+        <td><span class="badge badge-red">{{item.jenis}}</span></td>
+        <td>{{item.nomorDaftar}}</td>
+        <td>{{item.tanggalDaftar}}</td>
+        <td>{{item.penerima}}</td>
+        <td>{{item.namaPemilik}}</td>
+        <td>{{item.kodeBarang}}</td>
+        <td>{{item.namaBarang}}</td>
+        <td>{{item.satuan}}</td>
+        <td>{{item.jumlah}}</td>
+        <td>{{item.nilaiBarang}}</td>
+        <td>
+          <span class="status-tag not-ready" *ngIf="item.scanStatus === 'Belum ada'">
+             <i class="fa-solid fa-circle-dot alert-icon"></i> Belum ada
+          </span>
+          <span class="status-tag badge-pdf" *ngIf="item.scanStatus === 'PDF'">
+             <i class="fa-solid fa-file-pdf"></i> PDF
+          </span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="pagination">
+  <div class="page-size">
+    Lihat per 
+    <div class="dropdown-container inline-drop">
+      <div class="custom-select-trigger" (click)="togglePageMenu()">
+        {{pageSize}} <i class="fa-solid fa-angle-down" [class.rotated]="showPageMenu"></i>
+      </div>
+      <div class="dropdown-menu page-menu" *ngIf="showPageMenu">
+        <ul>
+          <li (click)="setPageSize(10)">10</li>
+          <li (click)="setPageSize(25)">25</li>
+          <li (click)="setPageSize(50)">50</li>
+        </ul>
+      </div>
+    </div>
+    baris
+  </div>
+  <div class="page-controls">
+    <button class="p-btn"><i class="fa-solid fa-angle-left"></i></button>
+    <button class="p-btn active">1</button>
+    <button class="p-btn">2</button>
+    <button class="p-btn">3</button>
+    <button class="p-btn">4</button>
+    <button class="p-btn">5</button>
+    <button class="p-btn"><i class="fa-solid fa-angle-right"></i></button>
+  </div>
+</div>
