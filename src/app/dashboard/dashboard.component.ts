@@ -32,18 +32,18 @@ import { CommonModule } from '@angular/common';
             <div class="stat-icon-wrap green">
               <i class="fa-solid fa-arrow-right-to-bracket"></i>
             </div>
-            <span class="stat-label">Pemasukan Bulan Ini</span>
+            <span class="stat-label">Jumlah dokumen Pemasukan tahun ini</span>
           </div>
-          <span class="stat-value text-success">+12</span>
+          <span class="stat-value text-success">12</span>
         </div>
         <div class="stat-card">
           <div class="stat-header">
             <div class="stat-icon-wrap red">
               <i class="fa-solid fa-arrow-up-right-from-square"></i>
             </div>
-            <span class="stat-label">Pengeluaran Bulan Ini</span>
+            <span class="stat-label">Jumlah dokumen pengeluaran tahun ini</span>
           </div>
-          <span class="stat-value text-danger">-5</span>
+          <span class="stat-value text-danger">5</span>
         </div>
         <div class="stat-card">
           <div class="stat-header">
