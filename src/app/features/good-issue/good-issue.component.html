@@ -22,21 +22,27 @@
           <tr>
             <th width="40">No.</th>
             <th>Tanggal Issue</th>
+            <th>Nomor Pengeluaran</th>
             <th>Batch Number</th>
+            <th>Tujuan Pengeluaran</th>
             <th>Part Number</th>
             <th>Material Description</th>
             <th width="80" class="text-center">Jumlah</th>
             <th width="80" class="text-center">Satuan</th>
+            <th>Nomor Daftar dan Tanggal daftar</th>
             <th width="70" class="text-center">Aksi</th>
           </tr>
           <tr>
             <th class="col-search"></th>
             <th class="col-search"><input type="text" placeholder="Search..." [(ngModel)]="colSearch.date"></th>
+            <th class="col-search"><input type="text" placeholder="Search..." [(ngModel)]="colSearch.issueNumber"></th>
             <th class="col-search"><input type="text" placeholder="Search..." [(ngModel)]="colSearch.batchNumber"></th>
+            <th class="col-search"><input type="text" placeholder="Search..." [(ngModel)]="colSearch.destination"></th>
             <th class="col-search"><input type="text" placeholder="Search..." [(ngModel)]="colSearch.partNumber"></th>
             <th class="col-search"><input type="text" placeholder="Search..." [(ngModel)]="colSearch.description"></th>
             <th class="col-search"><input type="text" placeholder="Search..." [(ngModel)]="colSearch.qty"></th>
             <th class="col-search"><input type="text" placeholder="Search..." [(ngModel)]="colSearch.unit"></th>
+            <th class="col-search"><input type="text" placeholder="Search..." [(ngModel)]="colSearch.registrationInfo"></th>
             <th class="col-search"></th>
           </tr>
         </thead>
@@ -44,11 +50,14 @@
           <tr *ngFor="let h of filteredItems; let i = index">
             <td class="text-center">{{i + 1}}</td>
             <td>{{h.date}}</td>
+            <td>{{h.issueNumber}}</td>
             <td class="font-bold text-main">{{h.batchNumber}}</td>
+            <td>{{h.destination}}</td>
             <td class="font-bold text-main">{{h.partNumber}}</td>
             <td>{{h.description}}</td>
             <td class="text-center">{{h.qty}}</td>
             <td class="text-center">{{h.unit}}</td>
+            <td>{{h.registrationInfo}}</td>
             <td class="text-center">
                <button class="btn-print-sm" (click)="printGI(h)"><i class="fa-solid fa-print"></i></button>
             </td>

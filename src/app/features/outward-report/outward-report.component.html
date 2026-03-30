@@ -52,6 +52,7 @@
         <th>NAMA BARANG</th>
         <th>SAT.</th>
         <th>JML.</th>
+        <th>VALUTA</th>
         <th>NILAI BARANG</th>
         <th>SCAN DOKUMEN</th>
       </tr>
@@ -68,6 +69,7 @@
         <th class="col-search"><input type="text" placeholder="Search..." [(ngModel)]="colSearch.namaBarang"></th>
         <th class="col-search"><input type="text" placeholder="Search..." [(ngModel)]="colSearch.satuan"></th>
         <th class="col-search"><input type="text" placeholder="Search..." [(ngModel)]="colSearch.jumlah"></th>
+        <th class="col-search"><input type="text" placeholder="Search..." [(ngModel)]="colSearch.valuta"></th>
         <th class="col-search"><input type="text" placeholder="Search..." [(ngModel)]="colSearch.nilaiBarang"></th>
         <th class="col-search"></th>
       </tr>
@@ -86,6 +88,7 @@
         <td>{{item.namaBarang}}</td>
         <td>{{item.satuan}}</td>
         <td>{{item.jumlah}}</td>
+        <td>{{item.valuta}}</td>
         <td>{{item.nilaiBarang}}</td>
         <td>
           <span class="status-tag not-ready" *ngIf="item.scanStatus === 'Belum ada'">
