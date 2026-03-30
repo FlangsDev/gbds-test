@@ -21,7 +21,9 @@ export class GoodIssueFormComponent {
     no: `0001/GMF/${new Date().toISOString().split('T')[0].replace(/-/g, '')}`,
     shippedBy: '',
     awbNo: '',
-    flightNo: ''
+    flightNo: '',
+    registrationNumber: '',
+    registrationDate: ''
   };
 
   items: any[] = [
@@ -128,7 +130,9 @@ export class GoodIssueFormComponent {
         unit: item.unit,
         shippedTo: this.shipTo.name,
         currency: item.currency,
-        valueCustom: item.valueCustom
+        valueCustom: item.valueCustom,
+        registrationNumber: this.docInfo.registrationNumber,
+        registrationDate: this.docInfo.registrationDate
       });
     });
     

@@ -29,7 +29,8 @@
             <th>Material Description</th>
             <th width="80" class="text-center">Jumlah</th>
             <th width="80" class="text-center">Satuan</th>
-            <th>Nomor Daftar dan Tanggal daftar</th>
+            <th>Nomor Daftar</th>
+            <th>Tanggal Daftar</th>
             <th width="70" class="text-center">Aksi</th>
           </tr>
           <tr>
@@ -42,7 +43,8 @@
             <th class="col-search"><input type="text" placeholder="Search..." [(ngModel)]="colSearch.description"></th>
             <th class="col-search"><input type="text" placeholder="Search..." [(ngModel)]="colSearch.qty"></th>
             <th class="col-search"><input type="text" placeholder="Search..." [(ngModel)]="colSearch.unit"></th>
-            <th class="col-search"><input type="text" placeholder="Search..." [(ngModel)]="colSearch.registrationInfo"></th>
+            <th class="col-search"><input type="text" placeholder="Search..." [(ngModel)]="colSearch.registrationNumber"></th>
+            <th class="col-search"><input type="text" placeholder="Search..." [(ngModel)]="colSearch.registrationDate"></th>
             <th class="col-search"></th>
           </tr>
         </thead>
@@ -57,7 +59,8 @@
             <td>{{h.description}}</td>
             <td class="text-center">{{h.qty}}</td>
             <td class="text-center">{{h.unit}}</td>
-            <td>{{h.registrationInfo}}</td>
+            <td>{{h.registrationNumber}}</td>
+            <td>{{h.registrationDate}}</td>
             <td class="text-center">
                <button class="btn-print-sm" (click)="printGI(h)"><i class="fa-solid fa-print"></i></button>
             </td>
