@@ -1,0 +1,380 @@
+<div class="guidance-container">
+  <div class="guidance-header-banner">
+    <div class="banner-left">
+      <h2><i class="fa-solid fa-book-open"></i> Technical Design Specification</h2>
+      <p>Panduan standar teknis pengembangan aplikasi berdasarkan Technical Design Specification V2 — TDI-2.</p>
+    </div>
+    <div class="banner-right">
+      <i class="fa-solid fa-code"></i>
+    </div>
+  </div>
+
+  <!-- Quick Download -->
+  <div class="download-strip">
+    <div class="download-item">
+      <i class="fa-solid fa-file-pdf"></i>
+      <div>
+        <strong>Technical Design Specification V2</strong>
+        <span>Dokumen referensi lengkap standar teknis</span>
+      </div>
+      <a href="javascript:void(0)" class="download-btn"><i class="fa-solid fa-download"></i> Download PDF</a>
+    </div>
+  </div>
+
+  <!-- Section: Clean Code -->
+  <div class="sop-section">
+    <div class="section-title" (click)="toggleSection('cleanCode')">
+      <div class="section-title-left">
+        <div class="section-icon blue"><i class="fa-solid fa-broom"></i></div>
+        <div>
+          <h3>Clean Code Principle</h3>
+          <p>SOLID, KISS, DRY — prinsip dasar penulisan kode yang bersih dan maintainable.</p>
+        </div>
+      </div>
+      <i class="fa-solid" [ngClass]="sections['cleanCode'] ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+    </div>
+    <div class="section-body" *ngIf="sections['cleanCode']">
+      <div class="principle-grid">
+        <div class="principle-card">
+          <h4>SOLID Principle</h4>
+          <ul>
+            <li><strong>S</strong> — Single Responsibility: Class hanya memiliki satu tanggung jawab.</li>
+            <li><strong>O</strong> — Open/Closed: Terbuka untuk ekstensi, tertutup untuk modifikasi.</li>
+            <li><strong>L</strong> — Liskov Substitution: Subtype harus bisa menggantikan base type.</li>
+            <li><strong>I</strong> — Interface Segregation: Interface kecil dan fokus.</li>
+            <li><strong>D</strong> — Dependency Inversion: Modul high-level tidak bergantung pada low-level.</li>
+          </ul>
+        </div>
+        <div class="principle-card">
+          <h4>KISS Principle</h4>
+          <p><em>"Keep It Simple, Stupid"</em> — Hindari kompleksitas yang tidak perlu. Rancang solusi yang sederhana, fungsional, dan mudah dipahami.</p>
+        </div>
+        <div class="principle-card">
+          <h4>DRY Principle</h4>
+          <p><em>"Don't Repeat Yourself"</em> — Hindari duplikasi kode. Gunakan abstraksi dan reuse code untuk mengurangi redundansi.</p>
+          <div class="code-example">
+            <code>export abstract class BaseComponent implements OnDestroy &#123;<br>&nbsp;&nbsp;unsubscribe$: Subject&lt;void&gt; = new Subject&lt;void&gt;();<br>&nbsp;&nbsp;ngOnDestroy(): void &#123; this.unsubscribe$.next(); &#125;<br>&#125;</code>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section: Technology Stack -->
+  <div class="sop-section">
+    <div class="section-title" (click)="toggleSection('techStack')">
+      <div class="section-title-left">
+        <div class="section-icon green"><i class="fa-solid fa-layer-group"></i></div>
+        <div>
+          <h3>Technology Stack</h3>
+          <p>Standar teknologi yang digunakan dalam pengembangan aplikasi TDI-2.</p>
+        </div>
+      </div>
+      <i class="fa-solid" [ngClass]="sections['techStack'] ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+    </div>
+    <div class="section-body" *ngIf="sections['techStack']">
+      <div class="tech-grid">
+        <div class="tech-card">
+          <div class="tech-icon"><i class="fa-brands fa-java"></i></div>
+          <h4>Java Environment</h4>
+          <ul>
+            <li>JDK 17.0.6 LTS</li>
+            <li>Spring Boot 2.x / 3.x</li>
+            <li>Quarkus / Micronaut</li>
+          </ul>
+        </div>
+        <div class="tech-card">
+          <div class="tech-icon"><i class="fa-brands fa-node-js"></i></div>
+          <h4>NodeJS Environment</h4>
+          <ul>
+            <li>NodeJS 18.12.0 / 20.9.0 LTS</li>
+            <li>Angular</li>
+            <li>NestJS / RxJs</li>
+          </ul>
+        </div>
+        <div class="tech-card">
+          <div class="tech-icon"><i class="fa-solid fa-mobile-screen-button"></i></div>
+          <h4>Dart / Flutter</h4>
+          <ul>
+            <li>Dart (latest version)</li>
+            <li>Flutter (latest version)</li>
+            <li>GetX State Management</li>
+          </ul>
+        </div>
+        <div class="tech-card">
+          <div class="tech-icon"><i class="fa-solid fa-database"></i></div>
+          <h4>Database & Tools</h4>
+          <ul>
+            <li>PostgreSQL 13.5+</li>
+            <li>Redis / MongoDB / Elastic</li>
+            <li>Kafka / RabbitMQ</li>
+          </ul>
+        </div>
+      </div>
+      <div class="note-box">
+        <i class="fa-solid fa-circle-info"></i>
+        <span>Gunakan versi <strong>LTS</strong> untuk stabilitas, keamanan, dan kompatibilitas enterprise.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section: Folder Structure -->
+  <div class="sop-section">
+    <div class="section-title" (click)="toggleSection('folderStructure')">
+      <div class="section-title-left">
+        <div class="section-icon orange"><i class="fa-solid fa-folder-tree"></i></div>
+        <div>
+          <h3>Folder Structure</h3>
+          <p>Standar struktur folder untuk Backend dan Frontend project.</p>
+        </div>
+      </div>
+      <i class="fa-solid" [ngClass]="sections['folderStructure'] ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+    </div>
+    <div class="section-body" *ngIf="sections['folderStructure']">
+      <div class="folder-grid">
+        <div class="folder-card">
+          <h4><i class="fa-solid fa-server"></i> Backend (Module-based)</h4>
+          <div class="code-block">
+            <pre>app/
+└── modules/
+    └── user/
+        ├── UserController.java
+        ├── UserService.java
+        ├── UserRepository.java
+        └── dtos/
+            ├── UserDto.java
+            └── InsertUserDto.java</pre>
+          </div>
+        </div>
+        <div class="folder-card">
+          <h4><i class="fa-solid fa-desktop"></i> Frontend (Angular)</h4>
+          <div class="code-block">
+            <pre>app-frontend/
+├── core/
+│   ├── base-service.ts
+│   └── guards/
+├── pages/
+│   └── users/
+│       ├── sub-pages/
+│       └── components/
+└── shared/
+    ├── layouts/
+    ├── reusable-components/
+    ├── utils/
+    └── dtos/</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section: Naming Convention -->
+  <div class="sop-section">
+    <div class="section-title" (click)="toggleSection('namingConvention')">
+      <div class="section-title-left">
+        <div class="section-icon purple"><i class="fa-solid fa-spell-check"></i></div>
+        <div>
+          <h3>Naming Convention</h3>
+          <p>Standar penamaan file, class, method, dan variable.</p>
+        </div>
+      </div>
+      <i class="fa-solid" [ngClass]="sections['namingConvention'] ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+    </div>
+    <div class="section-body" *ngIf="sections['namingConvention']">
+      <div class="convention-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Kategori</th>
+              <th>Format</th>
+              <th>Contoh</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>File (TypeScript)</td>
+              <td><span class="badge blue">kebab-case</span></td>
+              <td><code>man-power.service.ts</code></td>
+            </tr>
+            <tr>
+              <td>File (Java)</td>
+              <td><span class="badge green">PascalCase</span></td>
+              <td><code>ManPowerService.java</code></td>
+            </tr>
+            <tr>
+              <td>File (Dart)</td>
+              <td><span class="badge orange">snake_case</span></td>
+              <td><code>man_power.service.dart</code></td>
+            </tr>
+            <tr>
+              <td>Class / Interface</td>
+              <td><span class="badge green">PascalCase</span></td>
+              <td><code>UserServiceImpl</code></td>
+            </tr>
+            <tr>
+              <td>Method / Function</td>
+              <td><span class="badge purple">camelCase</span></td>
+              <td><code>getUserById()</code></td>
+            </tr>
+            <tr>
+              <td>Variable / Const</td>
+              <td><span class="badge purple">camelCase</span></td>
+              <td><code>personalNumber</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section: Git Versioning -->
+  <div class="sop-section">
+    <div class="section-title" (click)="toggleSection('gitRules')">
+      <div class="section-title-left">
+        <div class="section-icon red"><i class="fa-brands fa-git-alt"></i></div>
+        <div>
+          <h3>Git Versioning & Rules</h3>
+          <p>Aturan commit message, branching strategy (Git-flow), tagging, dan pull request.</p>
+        </div>
+      </div>
+      <i class="fa-solid" [ngClass]="sections['gitRules'] ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+    </div>
+    <div class="section-body" *ngIf="sections['gitRules']">
+      <div class="git-rules-grid">
+        <div class="git-card">
+          <h4><i class="fa-solid fa-code-commit"></i> Commit Message</h4>
+          <ul>
+            <li>Gunakan bracket: <code>[add]</code>, <code>[update]</code>, <code>[remove]</code></li>
+            <li>Gunakan present tense & imperative mood</li>
+            <li>Subject line max 50 karakter</li>
+            <li>Capitalize huruf pertama</li>
+          </ul>
+          <div class="code-example small">
+            <code>[add] color change logic on button<br>[update] layout design<br>[remove] deprecated function</code>
+          </div>
+        </div>
+        <div class="git-card">
+          <h4><i class="fa-solid fa-code-branch"></i> Git-flow Branches</h4>
+          <ul>
+            <li><span class="branch master">master</span> — Production-ready code</li>
+            <li><span class="branch staging">staging</span> — Staging changes</li>
+            <li><span class="branch dev">development</span> — Main development</li>
+            <li><span class="branch feature">feature/*</span> — New features</li>
+          </ul>
+        </div>
+        <div class="git-card">
+          <h4><i class="fa-solid fa-code-pull-request"></i> Pull Request</h4>
+          <ul>
+            <li>Buka PR setelah push ke branch</li>
+            <li>Diskusi dan review dengan collaborator</li>
+            <li>Tambahkan follow-up commits jika perlu</li>
+            <li>Merge ke base branch setelah approval</li>
+          </ul>
+        </div>
+        <div class="git-card">
+          <h4><i class="fa-solid fa-triangle-exclamation"></i> Best Practices</h4>
+          <ul>
+            <li>Gunakan single repository</li>
+            <li>Gunakan tags untuk releases</li>
+            <li>Hindari binary files di repo</li>
+            <li>Jangan simpan password di repository</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section: Containerization -->
+  <div class="sop-section">
+    <div class="section-title" (click)="toggleSection('container')">
+      <div class="section-title-left">
+        <div class="section-icon teal"><i class="fa-brands fa-docker"></i></div>
+        <div>
+          <h3>Containerization & Deployment</h3>
+          <p>Standar Docker, docker-compose, dan containerizing application.</p>
+        </div>
+      </div>
+      <i class="fa-solid" [ngClass]="sections['container'] ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+    </div>
+    <div class="section-body" *ngIf="sections['container']">
+      <div class="container-benefits">
+        <div class="benefit-item">
+          <div class="benefit-icon"><i class="fa-solid fa-box-open"></i></div>
+          <div>
+            <strong>Portability</strong>
+            <p>Aplikasi berjalan konsisten di semua environment.</p>
+          </div>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-icon"><i class="fa-solid fa-arrows-spin"></i></div>
+          <div>
+            <strong>Consistency</strong>
+            <p>Mengurangi masalah "it works on my machine".</p>
+          </div>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-icon"><i class="fa-solid fa-up-right-and-down-left-from-center"></i></div>
+          <div>
+            <strong>Scalability</strong>
+            <p>Mudah scale horizontal dengan Kubernetes.</p>
+          </div>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-icon"><i class="fa-solid fa-shield-halved"></i></div>
+          <div>
+            <strong>Isolation</strong>
+            <p>Process & filesystem isolation antar container.</p>
+          </div>
+        </div>
+      </div>
+      <div class="code-block mt-12">
+        <h4>Dockerfile (Spring Boot)</h4>
+        <pre>FROM openjdk:17-jdk-alpine3.14
+ENV APP_HOME=/usr/app/
+WORKDIR $APP_HOME
+COPY target/*.jar app.jar
+EXPOSE 8000
+ENTRYPOINT ["java","-jar","app.jar"]</pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section: Documentation -->
+  <div class="sop-section">
+    <div class="section-title" (click)="toggleSection('documentation')">
+      <div class="section-title-left">
+        <div class="section-icon amber"><i class="fa-solid fa-file-lines"></i></div>
+        <div>
+          <h3>Project Documentation</h3>
+          <p>Standar dokumentasi README.md, Compodoc, Postman, dan Swagger.</p>
+        </div>
+      </div>
+      <i class="fa-solid" [ngClass]="sections['documentation'] ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+    </div>
+    <div class="section-body" *ngIf="sections['documentation']">
+      <div class="doc-grid">
+        <div class="doc-card">
+          <i class="fa-brands fa-readme"></i>
+          <h4>README.md</h4>
+          <p>Sertakan: Project Title, Overview, System Requirements, Dependencies, Installation, Usage, dan Contributor.</p>
+        </div>
+        <div class="doc-card">
+          <i class="fa-solid fa-book"></i>
+          <h4>Compodoc</h4>
+          <p>Gunakan <code>&#64;compodoc/compodoc</code> untuk generate dokumentasi TypeScript. Jangan lupa tambahkan <code>documentations/</code> ke .gitignore.</p>
+        </div>
+        <div class="doc-card">
+          <i class="fa-solid fa-paper-plane"></i>
+          <h4>Postman Collection</h4>
+          <p>Dokumentasikan semua API endpoint menggunakan Postman Collection.</p>
+        </div>
+        <div class="doc-card">
+          <i class="fa-solid fa-file-code"></i>
+          <h4>Swagger</h4>
+          <p>Integrasikan Swagger untuk auto-generate API documentation.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

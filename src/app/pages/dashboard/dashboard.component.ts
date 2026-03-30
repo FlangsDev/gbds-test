@@ -20,19 +20,10 @@ import { CommonModule } from '@angular/common';
       <div class="stats-grid">
         <div class="stat-card">
           <div class="stat-header">
-            <div class="stat-icon-wrap blue">
-              <i class="fa-solid fa-boxes-stacked"></i>
-            </div>
-            <span class="stat-label">Total Barang</span>
-          </div>
-          <span class="stat-value">1,234</span>
-        </div>
-        <div class="stat-card">
-          <div class="stat-header">
             <div class="stat-icon-wrap green">
               <i class="fa-solid fa-arrow-right-to-bracket"></i>
             </div>
-            <span class="stat-label">Jumlah dokumen Pemasukan tahun ini</span>
+            <span class="stat-label">Pemasukan (Tahun ini)</span>
           </div>
           <span class="stat-value text-success">12</span>
         </div>
@@ -41,18 +32,9 @@ import { CommonModule } from '@angular/common';
             <div class="stat-icon-wrap red">
               <i class="fa-solid fa-arrow-up-right-from-square"></i>
             </div>
-            <span class="stat-label">Jumlah dokumen pengeluaran tahun ini</span>
+            <span class="stat-label">Pengeluaran (Tahun ini)</span>
           </div>
           <span class="stat-value text-danger">5</span>
-        </div>
-        <div class="stat-card">
-          <div class="stat-header">
-            <div class="stat-icon-wrap orange">
-              <i class="fa-solid fa-file-excel"></i>
-            </div>
-            <span class="stat-label">Total Dok. BC Diupload</span>
-          </div>
-          <span class="stat-value text-orange">48</span>
         </div>
         <div class="stat-card">
           <div class="stat-header">
@@ -94,28 +76,7 @@ import { CommonModule } from '@angular/common';
           </div>
         </div>
 
-        <!-- Chart 2 -->
-        <div class="chart-card">
-          <h3 class="chart-title">Statistik Penerimaan & Pengeluaran</h3>
-          <div class="chart-content">
-            <div class="donut-chart grgi-chart">
-              <div class="donut-center">
-                <span class="donut-label">Total Report</span>
-                <span class="donut-value">275</span>
-              </div>
-            </div>
-            <div class="chart-legend">
-              <div class="legend-item">
-                <div class="legend-info"><span class="legend-dot" style="background: #10b981;"></span>Good Receipt (GR)</div>
-                <span class="legend-pct">151 Laporan</span>
-              </div>
-              <div class="legend-item">
-                <div class="legend-info"><span class="legend-dot" style="background: #ef4444;"></span>Good Issue (GI)</div>
-                <span class="legend-pct">124 Laporan</span>
-              </div>
-            </div>
-          </div>
-        </div>
+
       </div>
     </div>
   `,
@@ -178,7 +139,7 @@ import { CommonModule } from '@angular/common';
 
     .stats-grid {
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 12px;
     }
 
@@ -241,8 +202,9 @@ import { CommonModule } from '@angular/common';
     /* Premium Donut Charts */
     .charts-container {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: 1fr;
       gap: 12px;
+      max-width: 600px;
     }
 
     .chart-card {
