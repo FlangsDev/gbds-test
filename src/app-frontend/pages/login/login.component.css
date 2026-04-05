@@ -1,3 +1,13 @@
+.gmf-logo {
+  position: relative;
+  z-index: 10;
+  display: block;
+  height: 60px;
+  width: auto;
+  margin-bottom: 20px;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.3)) brightness(0) invert(1);
+}
+
 .login-container-wrapper {
   font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
   color: #0f172a;
