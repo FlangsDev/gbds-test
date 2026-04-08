@@ -16,6 +16,8 @@ export class GoodIssueFormComponent {
     address: ''
   };
 
+  picName: string = '';
+
   docInfo = {
     date: new Date().toISOString().split('T')[0],
     no: `0001/GMF/${new Date().toISOString().split('T')[0].replace(/-/g, '')}`,
@@ -132,7 +134,8 @@ export class GoodIssueFormComponent {
         currency: item.currency,
         valueCustom: item.valueCustom,
         registrationNumber: this.docInfo.registrationNumber,
-        registrationDate: this.docInfo.registrationDate
+        registrationDate: this.docInfo.registrationDate,
+        picName: this.picName
       });
     });
     
