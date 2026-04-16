@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GBDPS - Laporan Mutasi Barang</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    .report-card { background: #fff; border-radius: 12px; border: 1px solid var(--border-color); box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); overflow: hidden; }
+    .card-header { padding: 24px; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+    .header-actions { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; width: 100%; }
+    .date-range-wrapper { display: flex; align-items: center; background: #f8fafc; border: 1px solid var(--border-color); border-radius: 8px; padding: 4px 12px; gap: 8px; }
+    .date-input { border: none; background: transparent; color: #475569; font-size: 0.85rem; font-family: inherit; outline: none; padding: 6px 0; cursor: pointer; }
+    .separator { color: #94a3b8; font-weight: 500; font-size: 0.85rem; }
+    /* Date Action Buttons */
+    .date-action-buttons { display: flex; align-items: center; gap: 8px; }
+    .btn-apply { display: flex; align-items: center; gap: 6px; padding: 8px 18px; background: linear-gradient(135deg, #0ea5e9, #0284c7); border: none; border-radius: 8px; color: #fff; font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: all 0.2s ease; box-shadow: 0 2px 4px rgba(2, 132, 199, 0.3); font-family: inherit; }
+    .btn-apply:hover:not(:disabled) { background: linear-gradient(135deg, #0284c7, #0369a1); box-shadow: 0 4px 8px rgba(2, 132, 199, 0.4); transform: translateY(-1px); }
+    .btn-apply:active:not(:disabled) { transform: translateY(0); box-shadow: 0 1px 2px rgba(2, 132, 199, 0.3); }
+    .btn-apply:disabled { opacity: 0.5; cursor: not-allowed; }
+    .btn-apply i { font-size: 0.8rem; }
+    .btn-cancel { display: flex; align-items: center; gap: 6px; padding: 8px 18px; background: #fff; border: 1px solid var(--border-color); border-radius: 8px; color: #64748b; font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: all 0.2s ease; font-family: inherit; }
+    .btn-cancel:hover { background: #fef2f2; border-color: #fca5a5; color: #dc2626; }
+    .btn-cancel:active { background: #fee2e2; }
+    .btn-cancel i { font-size: 0.8rem; }
+    .search-box { position: relative; display: flex; align-items: center; margin-left: auto; }
+    .search-box .search-icon { position: absolute; left: 12px; color: #94a3b8; font-size: 0.9rem; }
+    .search-input { width: 200px; padding: 10px 12px 10px 36px; border: 1px solid var(--border-color); border-radius: 8px; background-color: #f8fafc; font-size: 0.85rem; color: #334155; font-family: inherit; }
+    .search-input:focus { outline: none; border-color: #38bdf8; background-color: #fff; }
+    .btn-export { display: flex; align-items: center; gap: 8px; padding: 10px 16px; background: #fff; border: 1px solid var(--border-color); border-radius: 8px; color: #334155; font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: all 0.2s; font-family: inherit; }
+    .btn-export:hover { background: #f8fafc; }
+    .btn-export i.fa-cloud-arrow-down { color: #0284c7; font-size: 1.1rem; }
+    .btn-export .sm-icon { font-size: 0.75rem; color: var(--text-muted); transition: transform 0.2s; }
+    .dropdown-container { position: relative; }
+    .dropdown-menu { position: absolute; top: 100%; right: 0; margin-top: 8px; background: #fff; border-radius: 8px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); padding: 6px; width: 140px; border: 1px solid var(--border-color); z-index: 100; display: none; }
+    .dropdown-menu.open { display: block; }
+    .dropdown-menu ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 4px; }
+    .dropdown-menu li { padding: 8px 12px; display: flex; align-items: center; gap: 10px; cursor: pointer; font-size: 0.85rem; font-weight: 500; border-radius: 6px; transition: all 0.2s; color: #475569; }
+    .dropdown-menu li.opt-pdf:hover { background-color: #fef2f2; color: #dc2626; }
+    .dropdown-menu li.opt-pdf i { color: #dc2626; }
+    .dropdown-menu li.opt-excel:hover { background-color: #f0fdf4; color: #16a34a; }
+    .dropdown-menu li.opt-excel i { color: #16a34a; }
+    .table-container { overflow-x: auto; padding-bottom: 20px; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.70rem; white-space: nowrap; table-layout: auto; }
+    th { background-color: #f8fafc; padding: 12px 10px; text-align: center; font-weight: 600; color: #334155; border: 1px solid var(--border-color); vertical-align: middle; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.02em; }
+    th.sub-th { text-align: center; background-color: #f1f5f9; color: #475569; }
+    td { text-align: center; padding: 12px 10px; border: 1px solid var(--border-color); color: var(--text-main); }
+    .text-success { color: #16a34a; font-weight: 600; }
+    .text-danger { color: #dc2626; font-weight: 600; }
+    .text-center { text-align: center; }
+    .fw-bold { font-weight: 700; color: var(--primary-color); }
+  </style>
+</head>
+<body>
+  <div class="layout-wrapper">
+    <aside class="sidebar">
+      <div class="sidebar-header"><div class="logo" onclick="document.querySelector('.layout-wrapper').classList.remove('collapsed')" style="cursor:pointer" title="Expand Sidebar"><img src="logo2.png" alt="GBDPS Logo"><span>GBDPS-APP</span></div><button class="toggle-btn" onclick="document.querySelector('.layout-wrapper').classList.toggle('collapsed')" title="Toggle Sidebar"><i class="fa-solid fa-bars"></i></button></div>
+      <nav class="sidebar-nav">
+        <p class="nav-label">NAVIGATION</p>
+        <ul>
+          <li><a class="menu-link" href="dashboard.html"><i class="fa-solid fa-house"></i><span>Beranda</span></a></li>
+          <li class="nav-item"><a class="menu-link" href="master-barang.html"><i class="fa-solid fa-database"></i><span>Master Data Barang</span></a></li>
+          <li><div class="menu-group"><div class="menu-link group-header" onclick="toggleSubmenu(this)"><i class="fa-solid fa-cube"></i><span>Pencatatan Barang</span><i class="fa-solid fa-angle-down arrow"></i></div><ul class="submenu"><li><a href="inward-report.html"><i class="submenu-icon fa-solid fa-arrow-right-to-bracket"></i>Laporan Pemasukan Barang</a></li><li><a href="outward-report.html"><i class="submenu-icon fa-solid fa-arrow-up-right-from-square"></i>Laporan Pengeluaran Barang</a></li></ul></div></li>
+          <li><div class="menu-group"><div class="menu-link group-header" onclick="toggleSubmenu(this)"><i class="fa-solid fa-right-left"></i><span>GR &amp; GI</span><i class="fa-solid fa-angle-down arrow"></i></div><ul class="submenu"><li><a href="good-receipt.html"><i class="submenu-icon fa-solid fa-file-import"></i>Good Receipt (GR)</a></li><li><a href="good-issue.html"><i class="submenu-icon fa-solid fa-file-export"></i>Good Issue (GI)</a></li></ul></div></li>
+          <li><a class="menu-link" href="upload-scan.html"><i class="fa-solid fa-file-arrow-up"></i><span>Upload Scan Dokumen</span></a></li>
+          <li><a class="menu-link" href="upload-bc.html"><i class="fa-solid fa-file-excel"></i><span>Upload Data BC</span></a></li>
+          
+          <li>
+            <div class="menu-group">
+              <div class="menu-link group-header" onclick="toggleSubmenu(this)">
+                <i class="fa-solid fa-chart-column"></i><span>Laporan</span>
+                <i class="fa-solid fa-angle-down arrow"></i>
+              </div>
+              <ul class="submenu">
+                <li><a href="mutation-report.html"><i class="submenu-icon fa-solid fa-file-contract"></i>Laporan Mutasi</a></li>
+                <li><a href="adjustment-v2.html"><i class="submenu-icon fa-solid fa-code-compare"></i>Adjustment</a></li>
+                <li><a href="stock-opname.html"><i class="submenu-icon fa-solid fa-bullseye"></i>Stock Opname</a></li>
+                <li><a href="saldo-awal.html"><i class="submenu-icon fa-solid fa-file-invoice-dollar"></i>Saldo Awal</a></li>
+              </ul>
+            </div>
+          </li>
+          <li><a class="menu-link" href="history.html"><i class="fa-solid fa-clock-rotate-left"></i><span>Histori</span></a></li>
+          <li class="nav-item">
+            <a class="menu-link" href="feedback.html">
+              <i class="fa-regular fa-comment-dots"></i>
+              <span>Feedback</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="menu-link" href="guidance.html">
+              <i class="fa-solid fa-circle-question"></i>
+              <span>Guidance</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <div class="sidebar-footer"><button class="logout-btn"><i class="fa-solid fa-arrow-right-from-bracket"></i><span>Logout</span></button></div>
+    </aside>
+
+    <main class="main-container">
+      <header class="top-header">
+        <h1 class="page-title">Laporan Mutasi Barang</h1>
+        <div class="header-right">
+          <div class="timer"><i class="fa-regular fa-clock"></i><div class="time-box"><span class="time" id="clock">14:17:48</span><span class="date" id="date-display">12 MAR 2026</span></div></div>
+          <button class="info-btn"><i class="fa-solid fa-info-circle"></i></button>
+          <div class="user-profile-wrapper" onclick="toggleProfile(this)"><div class="user-profile"><div class="avatar"><i class="fa-solid fa-user"></i></div><span class="user-name">Admin</span><i class="fa-solid fa-angle-down" style="transition:transform 0.2s"></i></div><div class="profile-dropdown"><div class="profile-info-grid"><div class="info-row"><span class="info-label">Nama</span><span class="info-value">Admin</span></div><div class="info-row"><span class="info-label">Role Access</span><span class="info-value">Administrator</span></div><div class="info-row"><span class="info-label">Unit kerja</span><span class="info-value">Gudang Berikat</span></div></div><ul><li class="logout-text"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</li></ul></div></div>
+        </div>
+      </header>
+
+      <section class="content-area">
+        <div class="report-card">
+          <div class="card-header">
+            <div class="header-actions">
+              <div class="date-range-wrapper">
+                <input type="date" class="date-input" id="startDate" title="Start Date">
+                <span class="separator">to</span>
+                <input type="date" class="date-input" id="endDate" title="End Date">
+              </div>
+              <div class="date-action-buttons">
+                <button class="btn-apply" onclick="applyDateFilter()" id="btnApply">
+                  <i class="fa-solid fa-check"></i>
+                  <span>Apply</span>
+                </button>
+                <button class="btn-cancel" onclick="cancelDateFilter()">
+                  <i class="fa-solid fa-xmark"></i>
+                  <span>Batal</span>
+                </button>
+              </div>
+              <div class="search-box">
+                <i class="fa-solid fa-search search-icon"></i>
+                <input type="text" class="search-input" placeholder="Cari barang...">
+              </div>
+              <div class="dropdown-container">
+                <button class="btn-export" onclick="toggleMenu('export-dd')">
+                  <i class="fa-solid fa-cloud-arrow-down"></i>
+                  <span>Unduh</span>
+                  <i class="fa-solid fa-chevron-down sm-icon"></i>
+                </button>
+                <div class="dropdown-menu" id="export-dd">
+                  <ul>
+                    <li class="opt-pdf"><i class="fa-solid fa-file-pdf"></i> PDF</li>
+                    <li class="opt-excel"><i class="fa-solid fa-file-excel"></i> Excel</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="table-container">
+            <table class="nested-header-table">
+              <thead>
+                <tr>
+                  <th rowspan="2">No.</th>
+                  <th rowspan="2">Kode Barang</th>
+                  <th rowspan="2">Nama Barang</th>
+                  <th rowspan="2">Satuan</th>
+                  <th rowspan="2">Jumlah Barang</th>
+                  <th rowspan="2">Saldo Awal</th>
+                  <th colspan="2" class="text-center">Pemasukan</th>
+                  <th colspan="1" class="text-center">Pengeluaran</th>
+                  <th rowspan="2">Penyesuaian</th>
+                  <th rowspan="2">Saldo Akhir</th>
+                  <th rowspan="2">Hasil Pencacahan</th>
+                  <th rowspan="2">Jumlah Selisih</th>
+                  <th rowspan="2">Keterangan</th>
+                </tr>
+                <tr>
+                  <th class="sub-th">BC 2.3</th>
+                  <th class="sub-th">BC 2.7In</th>
+                  <th class="sub-th">BC 3.0</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="text-center">1</td>
+                  <td>PN-1001A</td>
+                  <td>310 LITRE OXYGEN BOTTLE</td>
+                  <td class="text-center">SET</td>
+                  <td class="text-center">50</td>
+                  <td class="text-center">50</td>
+                  <td class="text-center text-success">+50</td>
+                  <td class="text-center text-success">0</td>
+                  <td class="text-center text-danger">-10</td>
+                  <td class="text-center">0</td>
+                  <td class="text-center fw-bold">90</td>
+                  <td class="text-center">90</td>
+                  <td class="text-center">0</td>
+                  <td>-</td>
+                </tr>
+                <tr>
+                  <td class="text-center">2</td>
+                  <td>PN-1002B</td>
+                  <td>EASTMAN TURBO OIL 2197</td>
+                  <td class="text-center">LTR</td>
+                  <td class="text-center">200</td>
+                  <td class="text-center">200</td>
+                  <td class="text-center text-success">+200</td>
+                  <td class="text-center text-success">0</td>
+                  <td class="text-center text-danger">-50</td>
+                  <td class="text-center">0</td>
+                  <td class="text-center fw-bold">350</td>
+                  <td class="text-center">350</td>
+                  <td class="text-center">0</td>
+                  <td>-</td>
+                </tr>
+                <tr>
+                  <td class="text-center">3</td>
+                  <td>PN-2044X</td>
+                  <td>HYDRAULIC FLUID MIL-H-5606</td>
+                  <td class="text-center">LTR</td>
+                  <td class="text-center">100</td>
+                  <td class="text-center">75</td>
+                  <td class="text-center text-success">+100</td>
+                  <td class="text-center text-success">0</td>
+                  <td class="text-center text-danger">-30</td>
+                  <td class="text-center">+5</td>
+                  <td class="text-center fw-bold">150</td>
+                  <td class="text-center">148</td>
+                  <td class="text-center text-danger">-2</td>
+                  <td>Selisih minor</td>
+                </tr>
+                <tr>
+                  <td class="text-center">4</td>
+                  <td>PN-9980Z</td>
+                  <td>GASKET SEAL ASSEMBLY</td>
+                  <td class="text-center">PCS</td>
+                  <td class="text-center">300</td>
+                  <td class="text-center">20</td>
+                  <td class="text-center text-success">+300</td>
+                  <td class="text-center text-success">0</td>
+                  <td class="text-center text-danger">-80</td>
+                  <td class="text-center">-3</td>
+                  <td class="text-center fw-bold">237</td>
+                  <td class="text-center">237</td>
+                  <td class="text-center">0</td>
+                  <td>-</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script>
+function toggleSubmenu(el) { const w=document.querySelector('.layout-wrapper'); if(w && w.classList.contains('collapsed')) w.classList.remove('collapsed'); const s=el.nextElementSibling,a=el.querySelector('.arrow');s.classList.toggle('expanded');if(a)a.classList.toggle('rotated');}
+    function toggleProfile(w){w.querySelector('.profile-dropdown').classList.toggle('open');}
+    function toggleMenu(id){document.getElementById(id).classList.toggle('open');}
+    function applyDateFilter(){
+      var s=document.getElementById('startDate').value, e=document.getElementById('endDate').value;
+      if(!s||!e){alert('Silakan pilih tanggal awal dan akhir terlebih dahulu.');return;}
+      console.log('Applying date filter:',s,'to',e);
+      // TODO: Implement actual filtering
+    }
+    function cancelDateFilter(){
+      document.getElementById('startDate').value='';
+      document.getElementById('endDate').value='';
+      console.log('Date filter cancelled');
+      // TODO: Reset table data
+    }
+    function updateTime(){const n=new Date(),h=String(n.getHours()).padStart(2,'0'),m=String(n.getMinutes()).padStart(2,'0'),s=String(n.getSeconds()).padStart(2,'0');document.getElementById('clock').textContent=h+':'+m+':'+s;const mo=['JAN','FEB','MAR','APR','MEI','JUN','JUL','AGU','SEP','OKT','NOV','DES'],d=String(n.getDate()).padStart(2,'0');document.getElementById('date-display').textContent=d+' '+mo[n.getMonth()]+' '+n.getFullYear();}
+    updateTime();setInterval(updateTime,1000);
+  </script>
+</body>
+</html>
