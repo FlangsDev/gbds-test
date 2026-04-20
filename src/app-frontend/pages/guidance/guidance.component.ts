@@ -10,13 +10,12 @@ import { CommonModule } from '@angular/common';
 })
 export class GuidanceComponent {
   sections: { [key: string]: boolean } = {
-    cleanCode: false,
-    techStack: false,
-    folderStructure: false,
-    namingConvention: false,
-    gitRules: false,
-    container: false,
-    documentation: false
+    pengenalan: false,
+    modulUtama: false,
+    inventori: false,
+    uploadScan: false,
+    laporan: false,
+    masterData: false
   };
 
   toggleSection(key: string) {

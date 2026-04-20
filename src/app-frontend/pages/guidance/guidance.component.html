@@ -1,11 +1,11 @@
 <div class="guidance-container">
   <div class="guidance-header-banner">
     <div class="banner-left">
-      <h2><i class="fa-solid fa-book-open"></i> Technical Design Specification</h2>
-      <p>Panduan standar teknis pengembangan aplikasi berdasarkan Technical Design Specification V2 — TDI-2.</p>
+      <h2><i class="fa-solid fa-book-open"></i> Panduan Penggunaan Sistem GBDPS</h2>
+      <p>Buku panduan (User Manual) untuk penggunaan aplikasi Global Bonded Daily Performance System (GBDPS).</p>
     </div>
     <div class="banner-right">
-      <i class="fa-solid fa-code"></i>
+      <i class="fa-solid fa-laptop-house"></i>
     </div>
   </div>
 
@@ -14,364 +14,207 @@
     <div class="download-item">
       <i class="fa-solid fa-file-pdf"></i>
       <div>
-        <strong>Technical Design Specification V2</strong>
-        <span>Dokumen referensi lengkap standar teknis</span>
+        <strong>User Manual GBDPS V1</strong>
+        <span>Dokumen referensi lengkap standar penggunaan</span>
       </div>
       <a href="javascript:void(0)" class="download-btn"><i class="fa-solid fa-download"></i> Download PDF</a>
     </div>
   </div>
 
-  <!-- Section: Clean Code -->
+  <!-- Section: Pengenalan -->
   <div class="sop-section">
-    <div class="section-title" (click)="toggleSection('cleanCode')">
+    <div class="section-title" (click)="toggleSection('pengenalan')">
       <div class="section-title-left">
-        <div class="section-icon blue"><i class="fa-solid fa-broom"></i></div>
+        <div class="section-icon blue"><i class="fa-solid fa-circle-info"></i></div>
         <div>
-          <h3>Clean Code Principle</h3>
-          <p>SOLID, KISS, DRY — prinsip dasar penulisan kode yang bersih dan maintainable.</p>
+          <h3>Pengenalan Sistem</h3>
+          <p>Gambaran umum tentang aplikasi GBDPS dan fungsionalitas utamanya.</p>
         </div>
       </div>
-      <i class="fa-solid" [ngClass]="sections['cleanCode'] ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+      <i class="fa-solid" [ngClass]="sections['pengenalan'] ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
     </div>
-    <div class="section-body" *ngIf="sections['cleanCode']">
+    <div class="section-body" *ngIf="sections['pengenalan']">
       <div class="principle-grid">
-        <div class="principle-card">
-          <h4>SOLID Principle</h4>
-          <ul>
-            <li><strong>S</strong> — Single Responsibility: Class hanya memiliki satu tanggung jawab.</li>
-            <li><strong>O</strong> — Open/Closed: Terbuka untuk ekstensi, tertutup untuk modifikasi.</li>
-            <li><strong>L</strong> — Liskov Substitution: Subtype harus bisa menggantikan base type.</li>
-            <li><strong>I</strong> — Interface Segregation: Interface kecil dan fokus.</li>
-            <li><strong>D</strong> — Dependency Inversion: Modul high-level tidak bergantung pada low-level.</li>
-          </ul>
-        </div>
-        <div class="principle-card">
-          <h4>KISS Principle</h4>
-          <p><em>"Keep It Simple, Stupid"</em> — Hindari kompleksitas yang tidak perlu. Rancang solusi yang sederhana, fungsional, dan mudah dipahami.</p>
-        </div>
-        <div class="principle-card">
-          <h4>DRY Principle</h4>
-          <p><em>"Don't Repeat Yourself"</em> — Hindari duplikasi kode. Gunakan abstraksi dan reuse code untuk mengurangi redundansi.</p>
-          <div class="code-example">
-            <code>export abstract class BaseComponent implements OnDestroy &#123;<br>&nbsp;&nbsp;unsubscribe$: Subject&lt;void&gt; = new Subject&lt;void&gt;();<br>&nbsp;&nbsp;ngOnDestroy(): void &#123; this.unsubscribe$.next(); &#125;<br>&#125;</code>
-          </div>
+        <div class="principle-card" style="grid-column: 1 / -1;">
+          <h4>Apa itu GBDPS?</h4>
+          <p>GBDPS (Global Bonded Daily Performance System) adalah sistem manajemen inventori dan pencatatan barang (Good Receipt dan Good Issue) yang dirancang untuk memantau, mengelola, dan melaporkan mutasi stok barang secara real-time. Sistem ini membantu mengotomatisasi proses pergudangan dari penerimaan hingga pengeluaran barang.</p>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Section: Technology Stack -->
+  <!-- Section: Modul Utama -->
   <div class="sop-section">
-    <div class="section-title" (click)="toggleSection('techStack')">
+    <div class="section-title" (click)="toggleSection('modulUtama')">
       <div class="section-title-left">
-        <div class="section-icon green"><i class="fa-solid fa-layer-group"></i></div>
+        <div class="section-icon green"><i class="fa-solid fa-boxes-stacked"></i></div>
         <div>
-          <h3>Technology Stack</h3>
-          <p>Standar teknologi yang digunakan dalam pengembangan aplikasi TDI-2.</p>
+          <h3>Modul Utama (Inbound & Outbound)</h3>
+          <p>Panduan menggunakan modul Good Receipt dan Good Issue.</p>
         </div>
       </div>
-      <i class="fa-solid" [ngClass]="sections['techStack'] ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+      <i class="fa-solid" [ngClass]="sections['modulUtama'] ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
     </div>
-    <div class="section-body" *ngIf="sections['techStack']">
+    <div class="section-body" *ngIf="sections['modulUtama']">
       <div class="tech-grid">
         <div class="tech-card">
-          <div class="tech-icon"><i class="fa-brands fa-java"></i></div>
-          <h4>Java Environment</h4>
-          <ul>
-            <li>JDK 17.0.6 LTS</li>
-            <li>Spring Boot 2.x / 3.x</li>
-            <li>Quarkus / Micronaut</li>
+          <div class="tech-icon"><i class="fa-solid fa-truck-ramp-box"></i></div>
+          <h4>Good Receipt (GR)</h4>
+          <p>Digunakan untuk mencatat barang yang masuk ke gudang.</p>
+          <ul style="padding-left: 20px; margin-top: 10px;">
+            <li>Buka halaman <strong>Good Receipt</strong>.</li>
+            <li>Pilih data penerimaan atau tambah data baru.</li>
+            <li>Isi informasi barang, kuantitas, dan tanggal penerimaan.</li>
+            <li>Simpan untuk memperbarui stok di sistem.</li>
           </ul>
         </div>
         <div class="tech-card">
-          <div class="tech-icon"><i class="fa-brands fa-node-js"></i></div>
-          <h4>NodeJS Environment</h4>
-          <ul>
-            <li>NodeJS 18.12.0 / 20.9.0 LTS</li>
-            <li>Angular</li>
-            <li>NestJS / RxJs</li>
+          <div class="tech-icon"><i class="fa-solid fa-box-open"></i></div>
+          <h4>Good Issue (GI)</h4>
+          <p>Digunakan untuk mencatat barang yang keluar dari gudang.</p>
+          <ul style="padding-left: 20px; margin-top: 10px;">
+            <li>Buka halaman <strong>Good Issue</strong>.</li>
+            <li>Buat pengeluaran baru dan pilih PIC.</li>
+            <li>Pilih barang yang akan dikeluarkan.</li>
+            <li>Konfirmasi pengeluaran untuk mengurangi stok.</li>
           </ul>
         </div>
-        <div class="tech-card">
-          <div class="tech-icon"><i class="fa-solid fa-mobile-screen-button"></i></div>
-          <h4>Dart / Flutter</h4>
-          <ul>
-            <li>Dart (latest version)</li>
-            <li>Flutter (latest version)</li>
-            <li>GetX State Management</li>
-          </ul>
-        </div>
-        <div class="tech-card">
-          <div class="tech-icon"><i class="fa-solid fa-database"></i></div>
-          <h4>Database & Tools</h4>
-          <ul>
-            <li>PostgreSQL 13.5+</li>
-            <li>Redis / MongoDB / Elastic</li>
-            <li>Kafka / RabbitMQ</li>
-          </ul>
-        </div>
-      </div>
-      <div class="note-box">
-        <i class="fa-solid fa-circle-info"></i>
-        <span>Gunakan versi <strong>LTS</strong> untuk stabilitas, keamanan, dan kompatibilitas enterprise.</span>
       </div>
     </div>
   </div>
 
-  <!-- Section: Folder Structure -->
+  <!-- Section: Manajemen Inventori -->
   <div class="sop-section">
-    <div class="section-title" (click)="toggleSection('folderStructure')">
+    <div class="section-title" (click)="toggleSection('inventori')">
       <div class="section-title-left">
-        <div class="section-icon orange"><i class="fa-solid fa-folder-tree"></i></div>
+        <div class="section-icon orange"><i class="fa-solid fa-clipboard-check"></i></div>
         <div>
-          <h3>Folder Structure</h3>
-          <p>Standar struktur folder untuk Backend dan Frontend project.</p>
+          <h3>Manajemen Inventori & Penyesuaian</h3>
+          <p>Panduan untuk Stock Opname, Saldo Awal, dan Adjustment.</p>
         </div>
       </div>
-      <i class="fa-solid" [ngClass]="sections['folderStructure'] ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+      <i class="fa-solid" [ngClass]="sections['inventori'] ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
     </div>
-    <div class="section-body" *ngIf="sections['folderStructure']">
+    <div class="section-body" *ngIf="sections['inventori']">
       <div class="folder-grid">
         <div class="folder-card">
-          <h4><i class="fa-solid fa-server"></i> Backend (Module-based)</h4>
-          <div class="code-block">
-            <pre>app/
-└── modules/
-    └── user/
-        ├── UserController.java
-        ├── UserService.java
-        ├── UserRepository.java
-        └── dtos/
-            ├── UserDto.java
-            └── InsertUserDto.java</pre>
-          </div>
+          <h4><i class="fa-solid fa-scale-balanced"></i> Stock Opname</h4>
+          <p>Melakukan pencocokan stok fisik dengan stok sistem.</p>
+          <ol style="padding-left: 20px; margin-top: 10px;">
+            <li>Pilih tanggal opname (Filter Date).</li>
+            <li>Upload data hasil scan atau input manual selisih barang.</li>
+            <li>Sistem akan mencatat selisih stok (kurang/lebih).</li>
+          </ol>
         </div>
         <div class="folder-card">
-          <h4><i class="fa-solid fa-desktop"></i> Frontend (Angular)</h4>
-          <div class="code-block">
-            <pre>app-frontend/
-├── core/
-│   ├── base-service.ts
-│   └── guards/
-├── pages/
-│   └── users/
-│       ├── sub-pages/
-│       └── components/
-└── shared/
-    ├── layouts/
-    ├── reusable-components/
-    ├── utils/
-    └── dtos/</pre>
-          </div>
+          <h4><i class="fa-solid fa-wallet"></i> Saldo Awal</h4>
+          <p>Menentukan jumlah stok awal bulan atau periode tertentu.</p>
+          <ol style="padding-left: 20px; margin-top: 10px;">
+            <li>Pilih periode / tanggal saldo awal.</li>
+            <li>Upload file Excel yang berisi saldo awal barang.</li>
+            <li>Data stok awal akan menjadi basis perhitungan mutasi.</li>
+          </ol>
+        </div>
+        <div class="folder-card">
+          <h4><i class="fa-solid fa-pen-to-square"></i> Adjustment (Penyesuaian)</h4>
+          <p>Fitur untuk menyesuaikan jumlah barang jika terjadi kerusakan, kehilangan, atau kelebihan yang tidak wajar di luar operasional normal.</p>
+          <ol style="padding-left: 20px; margin-top: 10px;">
+            <li>Buka halaman <strong>Adjustment</strong>.</li>
+            <li>Isi tanggal penyesuaian.</li>
+            <li>Masukkan data penyesuaian stok (+/-).</li>
+          </ol>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Section: Naming Convention -->
+  <!-- Section: Upload Scan -->
   <div class="sop-section">
-    <div class="section-title" (click)="toggleSection('namingConvention')">
+    <div class="section-title" (click)="toggleSection('uploadScan')">
       <div class="section-title-left">
-        <div class="section-icon purple"><i class="fa-solid fa-spell-check"></i></div>
+        <div class="section-icon purple"><i class="fa-solid fa-qrcode"></i></div>
         <div>
-          <h3>Naming Convention</h3>
-          <p>Standar penamaan file, class, method, dan variable.</p>
+          <h3>Upload Scan</h3>
+          <p>Panduan mengunggah hasil pemindaian barcode / QR.</p>
         </div>
       </div>
-      <i class="fa-solid" [ngClass]="sections['namingConvention'] ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+      <i class="fa-solid" [ngClass]="sections['uploadScan'] ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
     </div>
-    <div class="section-body" *ngIf="sections['namingConvention']">
-      <div class="convention-table">
-        <table>
-          <thead>
-            <tr>
-              <th>Kategori</th>
-              <th>Format</th>
-              <th>Contoh</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>File (TypeScript)</td>
-              <td><span class="badge blue">kebab-case</span></td>
-              <td><code>man-power.service.ts</code></td>
-            </tr>
-            <tr>
-              <td>File (Java)</td>
-              <td><span class="badge green">PascalCase</span></td>
-              <td><code>ManPowerService.java</code></td>
-            </tr>
-            <tr>
-              <td>File (Dart)</td>
-              <td><span class="badge orange">snake_case</span></td>
-              <td><code>man_power.service.dart</code></td>
-            </tr>
-            <tr>
-              <td>Class / Interface</td>
-              <td><span class="badge green">PascalCase</span></td>
-              <td><code>UserServiceImpl</code></td>
-            </tr>
-            <tr>
-              <td>Method / Function</td>
-              <td><span class="badge purple">camelCase</span></td>
-              <td><code>getUserById()</code></td>
-            </tr>
-            <tr>
-              <td>Variable / Const</td>
-              <td><span class="badge purple">camelCase</span></td>
-              <td><code>personalNumber</code></td>
-            </tr>
-          </tbody>
-        </table>
+    <div class="section-body" *ngIf="sections['uploadScan']">
+      <div class="convention-table" style="padding: 15px;">
+        <p>Modul <strong>Upload Scan</strong> digunakan untuk mempercepat proses input barang masuk/keluar menggunakan file hasil scan barcode.</p>
+        <ul style="padding-left: 20px; margin-top: 10px;">
+          <li>Pilih jenis dokumen (GR / GI).</li>
+          <li>Pilih file berformat .txt, .csv, atau .xlsx hasil dari scanner.</li>
+          <li>Klik tombol <strong>Upload</strong> dan tunggu sistem memvalidasi data.</li>
+          <li>Periksa kembali data yang berhasil di-upload pada tabel preview.</li>
+        </ul>
       </div>
     </div>
   </div>
 
-  <!-- Section: Git Versioning -->
+  <!-- Section: Laporan -->
   <div class="sop-section">
-    <div class="section-title" (click)="toggleSection('gitRules')">
+    <div class="section-title" (click)="toggleSection('laporan')">
       <div class="section-title-left">
-        <div class="section-icon red"><i class="fa-brands fa-git-alt"></i></div>
+        <div class="section-icon teal"><i class="fa-solid fa-chart-line"></i></div>
         <div>
-          <h3>Git Versioning & Rules</h3>
-          <p>Aturan commit message, branching strategy (Git-flow), tagging, dan pull request.</p>
+          <h3>Laporan (Reports)</h3>
+          <p>Melihat dan mengunduh laporan mutasi, inward, dan outward.</p>
         </div>
       </div>
-      <i class="fa-solid" [ngClass]="sections['gitRules'] ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+      <i class="fa-solid" [ngClass]="sections['laporan'] ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
     </div>
-    <div class="section-body" *ngIf="sections['gitRules']">
-      <div class="git-rules-grid">
-        <div class="git-card">
-          <h4><i class="fa-solid fa-code-commit"></i> Commit Message</h4>
-          <ul>
-            <li>Gunakan bracket: <code>[add]</code>, <code>[update]</code>, <code>[remove]</code></li>
-            <li>Gunakan present tense & imperative mood</li>
-            <li>Subject line max 50 karakter</li>
-            <li>Capitalize huruf pertama</li>
-          </ul>
-          <div class="code-example small">
-            <code>[add] color change logic on button<br>[update] layout design<br>[remove] deprecated function</code>
-          </div>
-        </div>
-        <div class="git-card">
-          <h4><i class="fa-solid fa-code-branch"></i> Git-flow Branches</h4>
-          <ul>
-            <li><span class="branch master">master</span> — Production-ready code</li>
-            <li><span class="branch staging">staging</span> — Staging changes</li>
-            <li><span class="branch dev">development</span> — Main development</li>
-            <li><span class="branch feature">feature/*</span> — New features</li>
-          </ul>
-        </div>
-        <div class="git-card">
-          <h4><i class="fa-solid fa-code-pull-request"></i> Pull Request</h4>
-          <ul>
-            <li>Buka PR setelah push ke branch</li>
-            <li>Diskusi dan review dengan collaborator</li>
-            <li>Tambahkan follow-up commits jika perlu</li>
-            <li>Merge ke base branch setelah approval</li>
-          </ul>
-        </div>
-        <div class="git-card">
-          <h4><i class="fa-solid fa-triangle-exclamation"></i> Best Practices</h4>
-          <ul>
-            <li>Gunakan single repository</li>
-            <li>Gunakan tags untuk releases</li>
-            <li>Hindari binary files di repo</li>
-            <li>Jangan simpan password di repository</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Section: Containerization -->
-  <div class="sop-section">
-    <div class="section-title" (click)="toggleSection('container')">
-      <div class="section-title-left">
-        <div class="section-icon teal"><i class="fa-brands fa-docker"></i></div>
-        <div>
-          <h3>Containerization & Deployment</h3>
-          <p>Standar Docker, docker-compose, dan containerizing application.</p>
-        </div>
-      </div>
-      <i class="fa-solid" [ngClass]="sections['container'] ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
-    </div>
-    <div class="section-body" *ngIf="sections['container']">
+    <div class="section-body" *ngIf="sections['laporan']">
       <div class="container-benefits">
         <div class="benefit-item">
-          <div class="benefit-icon"><i class="fa-solid fa-box-open"></i></div>
+          <div class="benefit-icon"><i class="fa-solid fa-file-invoice"></i></div>
           <div>
-            <strong>Portability</strong>
-            <p>Aplikasi berjalan konsisten di semua environment.</p>
+            <strong>Laporan Mutasi</strong>
+            <p>Melihat rekap pergerakan barang (Saldo Awal + Masuk - Keluar = Saldo Akhir) dalam rentang waktu tertentu.</p>
           </div>
         </div>
         <div class="benefit-item">
-          <div class="benefit-icon"><i class="fa-solid fa-arrows-spin"></i></div>
+          <div class="benefit-icon"><i class="fa-solid fa-arrow-right-to-bracket"></i></div>
           <div>
-            <strong>Consistency</strong>
-            <p>Mengurangi masalah "it works on my machine".</p>
+            <strong>Laporan Inward</strong>
+            <p>Daftar rincian semua barang masuk (penerimaan) ke dalam gudang.</p>
           </div>
         </div>
         <div class="benefit-item">
-          <div class="benefit-icon"><i class="fa-solid fa-up-right-and-down-left-from-center"></i></div>
+          <div class="benefit-icon"><i class="fa-solid fa-arrow-right-from-bracket"></i></div>
           <div>
-            <strong>Scalability</strong>
-            <p>Mudah scale horizontal dengan Kubernetes.</p>
+            <strong>Laporan Outward</strong>
+            <p>Daftar rincian semua barang keluar (pengeluaran) dari gudang beserta tujuannya.</p>
           </div>
         </div>
-        <div class="benefit-item">
-          <div class="benefit-icon"><i class="fa-solid fa-shield-halved"></i></div>
-          <div>
-            <strong>Isolation</strong>
-            <p>Process & filesystem isolation antar container.</p>
-          </div>
-        </div>
-      </div>
-      <div class="code-block mt-12">
-        <h4>Dockerfile (Spring Boot)</h4>
-        <pre>FROM openjdk:17-jdk-alpine3.14
-ENV APP_HOME=/usr/app/
-WORKDIR $APP_HOME
-COPY target/*.jar app.jar
-EXPOSE 8000
-ENTRYPOINT ["java","-jar","app.jar"]</pre>
       </div>
     </div>
   </div>
 
-  <!-- Section: Documentation -->
+  <!-- Section: Master Data -->
   <div class="sop-section">
-    <div class="section-title" (click)="toggleSection('documentation')">
+    <div class="section-title" (click)="toggleSection('masterData')">
       <div class="section-title-left">
-        <div class="section-icon amber"><i class="fa-solid fa-file-lines"></i></div>
+        <div class="section-icon amber"><i class="fa-solid fa-database"></i></div>
         <div>
-          <h3>Project Documentation</h3>
-          <p>Standar dokumentasi README.md, Compodoc, Postman, dan Swagger.</p>
+          <h3>Master Data</h3>
+          <p>Mengelola data inti (Barang dan Pengguna).</p>
         </div>
       </div>
-      <i class="fa-solid" [ngClass]="sections['documentation'] ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+      <i class="fa-solid" [ngClass]="sections['masterData'] ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
     </div>
-    <div class="section-body" *ngIf="sections['documentation']">
+    <div class="section-body" *ngIf="sections['masterData']">
       <div class="doc-grid">
         <div class="doc-card">
-          <i class="fa-brands fa-readme"></i>
-          <h4>README.md</h4>
-          <p>Sertakan: Project Title, Overview, System Requirements, Dependencies, Installation, Usage, dan Contributor.</p>
+          <i class="fa-solid fa-box"></i>
+          <h4>Master Barang</h4>
+          <p>Modul untuk menambah, mengedit, atau menghapus daftar barang/material yang ada di sistem, beserta kode item dan deskripsi.</p>
         </div>
         <div class="doc-card">
-          <i class="fa-solid fa-book"></i>
-          <h4>Compodoc</h4>
-          <p>Gunakan <code>&#64;compodoc/compodoc</code> untuk generate dokumentasi TypeScript. Jangan lupa tambahkan <code>documentations/</code> ke .gitignore.</p>
-        </div>
-        <div class="doc-card">
-          <i class="fa-solid fa-paper-plane"></i>
-          <h4>Postman Collection</h4>
-          <p>Dokumentasikan semua API endpoint menggunakan Postman Collection.</p>
-        </div>
-        <div class="doc-card">
-          <i class="fa-solid fa-file-code"></i>
-          <h4>Swagger</h4>
-          <p>Integrasikan Swagger untuk auto-generate API documentation.</p>
+          <i class="fa-solid fa-users"></i>
+          <h4>Master User</h4>
+          <p>Modul pengaturan hak akses pengguna. Admin dapat menambahkan user baru, mengubah role, atau menonaktifkan akun.</p>
         </div>
       </div>
     </div>
