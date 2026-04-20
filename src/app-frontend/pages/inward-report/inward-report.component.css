@@ -377,3 +377,75 @@ tr:hover {
 .p-btn:hover:not(.active) {
   background-color: #f1f5f9;
 }
+
+/* ---- Responsive ---- */
+@media (max-width: 1024px) {
+  .report-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .actions {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .search-box {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .report-header {
+    gap: 12px;
+  }
+
+  .actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .search-box {
+    width: 100%;
+  }
+
+  .pagination {
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .filters {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .date-range {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .report-header {
+    gap: 10px;
+  }
+
+  .actions {
+    gap: 8px;
+  }
+
+  .btn-download {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .pagination {
+    font-size: 0.78rem;
+  }
+
+  .page-controls {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}

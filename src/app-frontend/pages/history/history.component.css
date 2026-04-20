@@ -400,3 +400,46 @@
   .card-header { padding: 16px; }
   .filters-bar { padding: 12px 16px; }
 }
+
+@media (max-width: 480px) {
+  .header-left h2 {
+    font-size: 1rem;
+  }
+
+  .header-stats {
+    gap: 12px;
+  }
+
+  .mini-val {
+    font-size: 1.1rem;
+  }
+
+  .log-entry {
+    gap: 10px;
+  }
+
+  .log-dot {
+    width: 34px;
+    height: 34px;
+    font-size: 0.85rem;
+  }
+
+  .log-detail {
+    font-size: 0.82rem;
+  }
+
+  .date-filter-wrap {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .date-input {
+    font-size: 0.82rem;
+    padding: 6px 8px;
+  }
+
+  .custom-select-trigger {
+    min-width: 120px;
+    font-size: 0.82rem;
+  }
+}

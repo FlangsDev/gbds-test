@@ -65,3 +65,26 @@
   color: var(--primary-color);
   font-weight: 600;
 }
+
+/* ---- Responsive ---- */
+@media (max-width: 768px) {
+  .feedback-container {
+    padding: 16px;
+  }
+
+  .custom-select-trigger {
+    font-size: 0.85rem;
+    padding: 8px 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .feedback-container {
+    padding: 12px;
+    border-radius: 8px;
+  }
+
+  .custom-select-trigger {
+    font-size: 0.8rem;
+  }
+}

@@ -239,3 +239,74 @@ td { text-align: center;
   .header-actions { width: 100%; justify-content: flex-start; }
   .search-input { width: 100%; min-width: 200px; }
 }
+
+@media (max-width: 768px) {
+  .card-header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 16px;
+  }
+
+  .header-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .date-range-wrapper {
+    width: 100%;
+  }
+
+  .date-action-buttons {
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  .search-box {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .search-input {
+    width: 100%;
+  }
+
+  .btn-export {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .card-header {
+    padding: 12px;
+  }
+
+  .card-title {
+    font-size: 1rem;
+  }
+
+  .date-range-wrapper {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .date-input {
+    font-size: 0.8rem;
+    padding: 4px 0;
+  }
+
+  .btn-apply, .btn-cancel {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+  }
+
+  th {
+    font-size: 0.6rem;
+    padding: 8px 6px;
+  }
+
+  td {
+    font-size: 0.65rem;
+    padding: 8px 6px;
+  }
+}

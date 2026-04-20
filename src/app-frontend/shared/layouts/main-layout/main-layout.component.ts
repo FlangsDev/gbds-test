@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
+import { RouterOutlet, RouterLink, RouterLinkActive, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -55,6 +55,12 @@ export class MainLayoutComponent implements OnInit, OnDestroy {
     { label: 'Guidance', icon: 'fa-solid fa-circle-question', route: '/guidance' }
   ];
 
+  constructor(public router: Router) {}
+
+  isActive(route: string): boolean {
+    return this.router.url === route || this.router.url.startsWith(route + '/');
+  }
+
   ngOnInit() {
     this.updateTime();
     this.timerInterval = setInterval(() => {
@@ -83,10 +89,31 @@ export class MainLayoutComponent implements OnInit, OnDestroy {
     this.isSidebarCollapsed = !this.isSidebarCollapsed;
   }
 
+  onMenuClick(event: Event, label: string, route: string) {
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+    
+    this.activeMenu = label;
+    
+    // Paksa pindah halaman via router programmatic untuk menjamin navigasi berhasil
+    this.router.navigate([route]).then(() => {
+      // Tutup sidebar setelah navigasi dikonfirmasi selesai
+      if (window.innerWidth <= 768) {
+        setTimeout(() => {
+          this.isSidebarCollapsed = false;
+        }, 50);
+      }
+    });
+  }
+
   toggleSubMenu(item: any) {
-    if (this.isSidebarCollapsed) {
+    // Di desktop, jika sidebar sedang collapsed (lebar 80px), buka menjadi full
+    if (window.innerWidth > 768 && this.isSidebarCollapsed) {
       this.isSidebarCollapsed = false;
     }
+    
     const wasExpanded = item.isExpanded;
     // Tutup semua yang lain
     this.menuItems.forEach(i => i.isExpanded = false);

@@ -1,4 +1,7 @@
 <div class="layout-wrapper" [class.collapsed]="isSidebarCollapsed">
+  <!-- Mobile Overlay Backdrop -->
+  <div class="sidebar-overlay" (click)="toggleSidebar()"></div>
+
   <!-- Sidebar -->
   <aside class="sidebar">
     <div class="sidebar-header">
@@ -15,7 +18,7 @@
       <p class="nav-label">NAVIGATION</p>
       <ul>
         <li *ngFor="let item of menuItems" class="nav-item">
-          <div class="menu-link" [routerLink]="item.route" routerLinkActive="active" *ngIf="!item.children" (click)="activeMenu = item.label">
+          <div class="menu-link" [class.active]="isActive(item.route)" *ngIf="!item.children" (click)="onMenuClick($event, item.label, item.route)">
             <i [class]="item.icon"></i>
             <span>{{item.label}}</span>
           </div>
@@ -28,7 +31,7 @@
             </div>
             <ul class="submenu" [class.expanded]="item.isExpanded">
               <li *ngFor="let child of item.children">
-                <a [routerLink]="child.route" routerLinkActive="active" (click)="activeMenu = child.label">
+                <a [class.active]="isActive(child.route)" (click)="onMenuClick($event, child.label, child.route)">
                   <i class="submenu-icon" [class]="child.icon" *ngIf="child.icon"></i>
                   {{child.label}}
                 </a>
@@ -50,7 +53,12 @@
   <!-- Main Content -->
   <main class="main-container">
     <header class="top-header">
-      <h1 class="page-title">{{activeMenu}}</h1>
+      <div class="header-left-group">
+        <button class="mobile-toggle-btn" (click)="toggleSidebar()">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+        <h1 class="page-title">{{activeMenu}}</h1>
+      </div>
       <div class="header-right">
         <div class="timer">
           <i class="fa-regular fa-clock"></i>

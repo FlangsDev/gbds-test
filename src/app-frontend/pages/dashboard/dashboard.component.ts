@@ -316,12 +316,94 @@ import { CommonModule } from '@angular/common';
       color: var(--text-main);
     }
 
-    @media (max-width: 900px) {
-      .stats-grid { grid-template-columns: repeat(3, 1fr); }
+    @media (max-width: 1024px) {
+      .welcome-banner {
+        padding: 18px 24px;
+      }
+      .banner-content h2 {
+        font-size: 1.2rem;
+      }
+      .banner-icon {
+        font-size: 3.5rem;
+        margin-right: 10px;
+      }
     }
-    @media (max-width: 600px) {
+
+    @media (max-width: 768px) {
       .stats-grid { grid-template-columns: repeat(2, 1fr); }
-      .welcome-card { padding: 24px 16px; }
+      .welcome-banner {
+        flex-direction: column;
+        text-align: center;
+        gap: 8px;
+        padding: 16px 20px;
+      }
+      .banner-content {
+        max-width: 100%;
+      }
+      .banner-content h2 {
+        font-size: 1.15rem;
+      }
+      .banner-content p {
+        font-size: 0.8rem;
+      }
+      .banner-icon {
+        font-size: 2.5rem;
+        margin-right: 0;
+        display: none;
+      }
+      .chart-content {
+        flex-direction: column;
+        align-items: center;
+      }
+      .charts-container {
+        flex-direction: column;
+      }
+      .chart-card {
+        max-width: 100%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .dashboard-container {
+        gap: 12px;
+      }
+      .stats-grid { 
+        grid-template-columns: 1fr 1fr; 
+        gap: 8px;
+      }
+      .stat-card {
+        padding: 12px 10px;
+      }
+      .stat-value {
+        font-size: 1.3rem;
+      }
+      .stat-label {
+        font-size: 0.78rem;
+      }
+      .welcome-banner {
+        padding: 14px 16px;
+        border-radius: 12px;
+      }
+      .banner-content h2 {
+        font-size: 1rem;
+      }
+      .donut-chart {
+        width: 100px;
+        height: 100px;
+      }
+      .donut-center {
+        width: 64px;
+        height: 64px;
+      }
+      .donut-value {
+        font-size: 1rem;
+      }
+      .legend-info {
+        font-size: 0.78rem;
+      }
+      .legend-pct {
+        font-size: 0.78rem;
+      }
     }
   `]
 })

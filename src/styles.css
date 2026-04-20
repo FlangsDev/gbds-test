@@ -63,3 +63,31 @@ ul {
   border-color: #bae6fd;
   box-shadow: 0 0 0 2px #e0f2fe;
 }
+
+/* ---- Global Responsive Utilities ---- */
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Ensure images never overflow their containers */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Better touch targets on mobile */
+@media (max-width: 768px) {
+  button, .btn-primary, .btn-secondary, .btn-submit, .btn-cancel {
+    min-height: 40px;
+  }
+
+  input, select, textarea {
+    font-size: 16px; /* Prevents iOS zoom on focus */
+  }
+}
+
+/* Table responsive wrapper - ensure all tables can scroll horizontally */
+.table-container {
+  -webkit-overflow-scrolling: touch;
+}

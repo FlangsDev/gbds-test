@@ -367,8 +367,24 @@ th {
     align-items: flex-start;
     gap: 8px;
   }
-
   .row-align label {
     width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .doc-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .table-header-flex {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .form-card {
+    padding: 14px 12px;
   }
 }

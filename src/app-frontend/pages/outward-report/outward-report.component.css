@@ -313,3 +313,55 @@ td { text-align: center;
     color: #fff;
     border-color: var(--primary-color);
 }
+
+/* ---- Responsive ---- */
+@media (max-width: 1024px) {
+    .report-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+
+    .actions {
+        width: 100%;
+        flex-wrap: wrap;
+    }
+
+    .search-box {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .search-box {
+        width: 100%;
+    }
+
+    .pagination {
+        flex-direction: column;
+        gap: 12px;
+        align-items: center;
+    }
+
+    .filters {
+        width: 100%;
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 480px) {
+    .btn-download {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .page-controls {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
