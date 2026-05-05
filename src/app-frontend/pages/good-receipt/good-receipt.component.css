@@ -436,6 +436,11 @@ textarea:focus {
   text-transform: uppercase;
 }
 
+.print-template .print-footer-line {
+  border-top: 2px solid #00569d;
+  margin-top: 100px;
+}
+
 @media print {
   @page {
     size: A5 landscape;
@@ -514,6 +519,11 @@ textarea:focus {
     color: #00569d;
     letter-spacing: 0.5px;
     text-transform: uppercase;
+  }
+
+  .print-footer-line {
+    border-top: 2px solid #00569d;
+    margin-top: 100px;
   }
 
   .print-info-box {
